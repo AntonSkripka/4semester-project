@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>rick-and-morty-team-project</title>
+
+		<link
+			href="https://img.icons8.com/plasticine/100/rick-sanchez.png"
+			type="image/x-icon"
+			rel="shortcut icon"
+		/>
+
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
+
+		
+		<script type="module" crossorigin src="/4semester-project/assets/main-b46629fd.js"></script>
+		<link rel="stylesheet" href="/4semester-project/assets/main-231eea50.css">
+	</head>
+
+	<body>
+		<header class="header">
+			<div class="container">
+	<nav class="header__navbar">
+		<a
+			href="./index.html"
+			class="header__logo"
+		>
+			<picture>
+				<source
+					media="(min-width: 768px)"
+					srcset="/4semester-project/assets/logo-lg-6efe3a00.png 1x, /4semester-project/assets/logo-lg-2x-967b0cd7.png 2x, /4semester-project/assets/logo-lg-3x-127fdfda.png 3x"
+				/>
+				<source
+					media="(min-width: 1440px)"
+					srcset="/4semester-project/assets/logo-lg-6efe3a00.png 1x, /4semester-project/assets/logo-lg-2x-967b0cd7.png 2x, /4semester-project/assets/logo-lg-3x-127fdfda.png 3x"
+				/>
+				<img
+					src="/4semester-project/assets/logo-sm-22122b8e.png"
+					srcset="/4semester-project/assets/logo-sm-22122b8e.png 1x, /4semester-project/assets/logo-sm-2x-9216c4d7.png 2x, /4semester-project/assets/logo-sm-3x-fb98ad34.png 3x"
+					alt="logo"
+				/>
+			</picture>
+		</a>
+
+		<ul class="header__list">
+			<li class="header__list-item">
+				<a
+					href="./characters.html"
+					class="header__list-link"
+					>Characters</a
+				>
+			</li>
+			<li class="header__list-item">
+				<a
+					href="./episodes.html"
+					class="header__list-link"
+					>Episodes</a
+				>
+			</li>
+		</ul>
+	</nav>
+
+	<div class="header__search">
+		<label
+			for="headerSearchInput"
+			class="header__search-label"
+		>
+			<svg
+				class="icon"
+				width="16"
+				height="16"
+			>
+				<use xlink:href="/4semester-project/assets/sprites-cc0aab62.svg#search"></use>
+			</svg>
+		</label>
+		<input
+			type="text"
+			id="headerSearchInput"
+			name="headerSearchInput"
+			placeholder="Search"
+		/>
+	</div>
+</div>
+
+		</header>
+
+		<main>
+			<section class="main-hero">
+  <div class="container main-hero-div">
+    <div class="main-hero-wrapper">
+      <div class="main-hero-glow"></div>
+      <picture class="main-hero-img">
+        <source media="(min-width: 768px)" srcset="/4semester-project/assets/hero-main-t-1x-e70655be.png 1x, /4semester-project/assets/hero-main-t-2x-8c12ac19.png 2x, /4semester-project/assets/hero-main-t-3x-945c85fc.png 3x">
+        <source media="(min-width: 375px)" srcset="/4semester-project/assets/hero-main-m-1x-f7bbb495.png 1x, /4semester-project/assets/hero-main-m-2x-eabb9cd7.png 2x, /4semester-project/assets/hero-main-m-3x-0ad8fc58.png 3x">
+        <img src="/4semester-project/assets/hero-main-m-1x-f7bbb495.png" alt="Hero">
+      </picture>
+    <img class="stars-main" src="data:image/png;base64,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" alt="stars">
+    </div>
+
+    <picture class="hero-logo">
+      <source media="(min-width: 768px)" srcset="/4semester-project/assets/logo-main-hero-t-1x-39c56821.png 1x, /4semester-project/assets/logo-main-hero-t-2x-0f86d3d5.png 2x, /4semester-project/assets/logo-main-hero-t-3x-f69716e7.png 3x">
+
+      <source media="(min-width: 375px)" srcset="/4semester-project/assets/logo-main-hero-t-1x-39c56821.png 1x, /4semester-project/assets/logo-main-hero-t-2x-0f86d3d5.png 2x, /4semester-project/assets/logo-main-hero-t-3x-f69716e7.png 3x">
+
+      <img src="/4semester-project/assets/logo-main-hero-m-1x-e0cd2dce.png" alt="Hero">
+    </picture>
+    <h1 class="main-hero-div-text">If you're a fan of Rick and Morty, you don't want to miss out on our app! Start
+      exploring the endless possibilities of Rick and Morty!</h1>
+  </div>
+  <a class="yakir" href="#episodes-smoth-link">
+    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="22" r="21.5" stroke="#FAFAFA" stroke-opacity="0.5" />
+        <path d="M12 21.9301L22 32M22 32L32 21.9301M22 32V12" stroke="#FAFAFA" stroke-opacity="0.5" />
+    </svg>
+  </a>
+  <div class="buttons-hero-div">
+    <ul class="buttons-hero-list">
+      <li class="buttons-hero-item">
+        <div id="btn1" class="btn">the adventures</div>
+      </li>
+      <li class="buttons-hero-item">
+        <div id="btn2" class="btn">Animated</div>
+      </li>
+      <li class="buttons-hero-item">
+        <div id="btn3" class="btn">Sitcom</div>
+      </li>
+      <li class="buttons-hero-item">
+        <div id="btn4" class="btn">Justin Roiland</div>
+      </li>
+      <li class="buttons-hero-item">
+        <div id="btn5" class="btn">superpower</div>
+      </li>
+      <li class="buttons-hero-item">
+        <div id="btn6" class="btn">creative</div>
+      </li>
+      <li class="buttons-hero-item">
+        <div id="btn7" class="btn">Amazing!</div>
+      </li>
+      <li class="buttons-hero-item">
+        <div id="btn8" class="btn">Rick and Morty</div>
+      </li>
+      <li class="buttons-hero-item">
+        <div id="btn9" class="btn">comics</div>
+      </li>
+      <li class="buttons-hero-item">
+        <div id="btn10" class="btn">follows</div>
+      </li>
+      <li class="buttons-hero-item">
+        <div id="btn11" class="btn">characters</div>
+      </li>
+      <li class="buttons-hero-item">
+        <div id="btn12" class="btn">Whoa</div>
+      </li>
+    </ul>
+  </div>
+
+</section>
+			<section class="main-characters">
+  <div class='container'>
+    <!-- <div class="main-characters__header">
+
+    </div> -->
+      <h2 class="main-characters__title">
+      <span class="main-characters__title-badge">Main</span>
+      <span class="main-characters__title-text">characters</span>
+      </h2>
+    <div class="main-characters__layout">
+
+      <div class="main-characters__figure">
+        <img
+          class="main-characters__image"
+          alt="Rick Sanchez"
+        />
+      </div>
+
+    <div class="main-characters__list">
+      <div class="main-characters__item main-characters__item--active" data-character="rick">
+        <h3 class="main-characters__name">Rick Sanchez</h3>
+        <p class="main-characters__description">
+          Rick Sanchez is a brilliant, but deeply troubled scientist and one of
+          the main characters in the animated TV show Rick and Morty.
+        </p>
+      </div>
+
+      <div class="main-characters__item" data-character="morty">
+        <h3 class="main-characters__name">Morty Smith</h3>
+        <p class="main-characters__description">
+          Morty Smith is the other main character in the animated TV show Rick
+          and Morty, and Rick's grandson.
+        </p>
+      </div>
+
+      <div class="main-characters__item" data-character="summer">
+        <h3 class="main-characters__name">Summer Smith</h3>
+        <p class="main-characters__description">
+          Summer Smith is Morty's older sister and one of the main characters in
+          Rick and Morty. Portrayed as a typical teenager, she grows into an
+          independent and resourceful character.
+        </p>
+      </div>
+
+      <div class="main-characters__item" data-character="beth">
+        <h3 class="main-characters__name">Beth Smith</h3>
+        <p class="main-characters__description">
+          Beth is a horse surgeon and Rick's daughter. She is intelligent and
+          sometimes emotionally distant.
+        </p>
+      </div>
+
+      <div class="main-characters__item" data-character="jerry">
+        <h3 class="main-characters__name">Jerry Smith</h3>
+        <p class="main-characters__description">
+          Jerry is Beth's husband, the father of Summer and Morty Smith, and the
+          son-in-law of Rick Sanchez.
+        </p>
+      </div>
+    </div>
+    
+    </div>
+  </div>
+</section>
+
+
+			<section class="rnm-promo" id="episodes-smoth-link">
+  <div class="container">
+
+    <div class="rnm-promo__content">
+      <h2 class="rnm-promo__title">
+        Ready to <span class="rnm-promo__title-highlight">explore</span>
+        the crazy world of Rick and Morty? 
+      </h2>
+    </div>
+
+    <div class="rnm-promo__slider" data-rnm-slider="auto">
+      <div class="rnm-promo__slider--track">
+        <div class="rnm-slider__slide">
+          <img
+            class="rnm-slider__image RickAndMortyUsingAfuturisticDevice"
+
+            alt="Rick and Morty using a futuristic device"
+          />
+        </div>
+
+        <div class="rnm-slider__slide">
+          <img
+            class="rnm-slider__image ricAndMorty"
+
+            alt="Rick and Morty standing in a spaceship"
+          />
+        </div>
+
+        <div class="rnm-slider__slide">
+          <img
+            class="rnm-slider__image ricAndMortyAndBabochka"
+
+            alt="Alien screaming near Rick and Morty"
+          />
+        </div>
+
+        <div class="rnm-slider__slide">
+          <img
+            class="rnm-slider__image RicAndBethAndJerry"
+
+            alt="Family from Rick and Morty smiling"
+          />
+        </div>
+
+        <div class="rnm-slider__slide">
+          <img
+            class="rnm-slider__image MortyAndSummerInSpace"
+
+            alt="Rick, Morty and Summer in space"
+          />
+        </div>
+      </div>
+
+    </div>
+      <button class="rnm-promo__button">
+        Episodes
+      </button>
+  </div>
+</section>
+
+		</main>
+		<footer class="footer light">
+			<div class="container">
+	<div class="footer__container">
+		<div class="footer__logo">
+			<img
+				src="/4semester-project/assets/rickAndMorty-footerLogo-1x-3fe43136.png"
+				alt=""
+			/>
+			<div>Rick and</div>
+			<div>Morty</div>
+		</div>
+
+		<div class="footer__menu">
+			<nav class="footer__nav">
+				<ul class="footer__list">
+					<li>
+						<a href="./characters.html">Characters</a>
+					</li>
+					<li>
+						<a href="./episodes.html">Episodes</a>
+					</li>
+				</ul>
+			</nav>
+
+			<ul class="footer__links">
+				<li>
+					<a href="/">
+						<svg
+							class="icon"
+							width="12"
+							height="24"
+						>
+							<use xlink:href="/4semester-project/assets/sprites-cc0aab62.svg#facebook"></use>
+						</svg>
+					</a>
+				</li>
+				<li>
+					<a href="/">
+						<svg
+							class="icon"
+							width="28"
+							height="28"
+						>
+							<use xlink:href="/4semester-project/assets/sprites-cc0aab62.svg#twitter"></use>
+						</svg>
+					</a>
+				</li>
+				<li>
+					<a href="/">
+						<svg
+							class="icon"
+							width="26"
+							height="26"
+						>
+							<use xlink:href="/4semester-project/assets/sprites-cc0aab62.svg#instagram"></use>
+						</svg>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<p class="footer__agreement">Privacy Policy Public Offering Agreement</p>
+</div>
+
+		</footer>
+
+		
+	</body>
+</html>
