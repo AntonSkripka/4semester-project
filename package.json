@@ -1,11 +1,11 @@
 {
-  "name": "rick-and-morty-team-project",
+  "name": "4semester-project",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build --base=/rick-and-morty-team-project/",
+    "build": "vite build --base=/4semester-project/",
     "preview": "vite preview"
   },
   "devDependencies": {
