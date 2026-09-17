@@ -1,0 +1,56 @@
+<div class="episode-modal">
+  <div class="episode-modal__overlay"></div>
+
+  <div class="episode-modal__window">
+    <button
+      class="episode-modal__close"
+      type="button"
+      data-modal-close
+      aria-label="Close"
+    >
+      &times;
+    </button>
+
+    <div class="episode-modal__inner">
+      <div class="episode-modal__border"></div>
+
+      <div class="episode-modal__content">
+        <header class="episode-modal__header">
+          <h2 class="episode-modal__title">{{title}}</h2>
+
+          <div class="episode-modal__meta">
+            <div class="episode-modal__meta-block">
+              <span class="episode-modal__meta-label">Id</span>
+              <span class="episode-modal__meta-value">{{id}}</span>
+            </div>
+
+            <div class="episode-modal__meta-block">
+              <span class="episode-modal__meta-label">Air date</span>
+              <span class="episode-modal__meta-value">{{air_date}}</span>
+            </div>
+          </div>
+        </header>
+
+        <section class="episode-modal__section">
+          <h3 class="episode-modal__section-title">Characters</h3>
+          <p class="episode-modal__section-subtitle">Major Characters</p>
+
+          <ul class="episode-modal__characters">
+            {{#each characters}}
+              <li class="episode-modal__character">
+                <figure class="episode-modal__figure">
+                  <img
+                    class="episode-modal__image"
+                    src="{{image}}"
+                    alt="{{name}}"
+                  />
+                  <figcaption class="episode-modal__name">{{name}}</figcaption>
+                </figure>
+              </li>
+            {{/each}}
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

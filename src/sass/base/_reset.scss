@@ -1,0 +1,77 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	// outline: 1px solid palevioletred;
+}
+
+*::after,
+::before {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	height: 100vh;
+	width: 100vw;
+	overflow-x: hidden;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+ol,
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+li {
+	list-style: none;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+svg {
+	display: block;
+}
+
+input,
+button,
+textarea {
+	outline: none;
+	border: none;
+}
+
+address {
+	font-style: normal;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+.is-hidden {
+	display: none;
+}

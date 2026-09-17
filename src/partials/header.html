@@ -1,0 +1,74 @@
+<div class="container">
+	<nav class="header__navbar">
+		<a
+			href="./index.html"
+			class="header__logo"
+		>
+			<picture>
+				<source
+					media="(min-width: 768px)"
+					srcset="
+						./images/logo-md.png    1x,
+						./images/logo-md-2x.png 2x,
+						./images/logo-md-3x.png 3x
+					"
+				/>
+				<source
+					media="(min-width: 1440px)"
+					srcset="
+						./images/logo-lg.png    1x,
+						./images/logo-lg-2x.png 2x,
+						./images/logo-lg-3x.png 3x
+					"
+				/>
+				<img
+					src="./images/logo-sm.png"
+					srcset="
+						./images/logo-sm.png    1x,
+						./images/logo-sm-2x.png 2x,
+						./images/logo-sm-3x.png 3x
+					"
+					alt="logo"
+				/>
+			</picture>
+		</a>
+
+		<ul class="header__list">
+			<li class="header__list-item">
+				<a
+					href="./characters.html"
+					class="header__list-link"
+					>Characters</a
+				>
+			</li>
+			<li class="header__list-item">
+				<a
+					href="./episodes.html"
+					class="header__list-link"
+					>Episodes</a
+				>
+			</li>
+		</ul>
+	</nav>
+
+	<div class="header__search">
+		<label
+			for="headerSearchInput"
+			class="header__search-label"
+		>
+			<svg
+				class="icon"
+				width="16"
+				height="16"
+			>
+				<use xlink:href="./images/sprites.svg#search"></use>
+			</svg>
+		</label>
+		<input
+			type="text"
+			id="headerSearchInput"
+			name="headerSearchInput"
+			placeholder="Search"
+		/>
+	</div>
+</div>

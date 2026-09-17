@@ -1,0 +1,167 @@
+.main-characters{
+	&__title{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+	}
+	&__title-badge {
+  background-color: #0D171D; 
+  color: #ffffff;            
+  text-align: center;
+
+	border-radius: 44px;
+
+	height: 44px;       
+  border-radius: 20px;       
+  font-weight: 600;          
+  display: inline-block;  
+  
+  padding: 5px 16px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	}
+	&__title-text {
+    color: #111;
+  }
+	&__layout {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+  }
+
+  &__figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--green);
+		margin-bottom: 32px;
+    border-radius: 12px;
+
+    width: 335px;
+    height: 335px;
+
+
+    margin-bottom: 32px;
+  }
+
+  &__image {
+    width: 205px;
+    height: 308px;
+  }
+
+  &__list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  &__item {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.2);
+
+    cursor: pointer;
+
+    &--active .main-characters__name {
+      color: var(--green);
+    }
+  }
+
+  &__name {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 133%;
+    color: #111;
+    margin-bottom: 8px;
+  }
+
+  &__description {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 129%;
+    color: #111;
+    max-width: 480px;
+  }
+  @include media('md'){
+
+    &__figure {
+
+      width: 704px;
+      height: 704px;
+
+      margin-bottom: 32px;
+    }
+      &__description {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 129%;
+      color: #111;
+      max-width: 704px;
+    }
+    &__name {
+      font-size: 24px;
+      margin-bottom: 25px;
+    }
+    &__layout {
+      margin-bottom: 128px;
+    }
+  }
+
+}
+  @include media('lg'){
+  .container {
+    width: 1184px;
+    padding: 0 ;
+  }
+  .main-characters{
+    &__container{
+      display: flex;
+    }
+    &__figure {
+
+      width: 504px;
+      height: 664px;
+      border-radius: 100px;
+      margin-bottom: 0;
+    }
+    &__title{
+      display: flex;
+      align-items: center;
+      font-size: 44px;
+      gap: 12px;
+      margin-bottom: 40px;
+	}
+	  &__title-badge {
+	    width: 145px;
+      height: 56px;       
+      border-radius: 55px;      
+	}
+	  &__title-text {
+      color: #111;
+  }
+    &__description {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 113%;
+      color: #111;
+      width: 648px;
+    }
+    &__name {
+      font-size: 24px;
+      margin-bottom: 25px;
+    }
+    &__layout {
+      flex-direction: row;  
+      align-items: flex-start;
+      gap: 60px;            
+    }
+    &__list {
+      flex: 1;               
+    }
+  }
+  }

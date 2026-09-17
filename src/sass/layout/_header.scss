@@ -1,0 +1,132 @@
+.header {
+	background-color: #0d171d;
+	color: #fafafa;
+
+	> .container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 20px;
+
+		@include media('md') {
+			padding: 12px 0;
+		}
+
+		@include media('lg') {
+			padding: 12px 0;
+		}
+	}
+
+	&__logo {
+		display: none;
+
+		&.active {
+			display: block;
+		}
+	}
+
+	&__list {
+		display: none;
+		gap: 1px;
+
+		&-item {
+			&:first-child {
+				> a {
+					border: 1px solid #a1d737;
+					background-color: #a1d737;
+					color: #0d171d;
+
+					&:hover {
+						background-color: transparent;
+						color: #fafafa;
+						border-color: #fafafa4d;
+					}
+				}
+			}
+
+			&:last-child {
+				> a {
+					border: 1px solid #fafafa4d;
+					background-color: transparent;
+					color: #fafafa;
+
+					&:hover {
+						background-color: #a1d737;
+						color: #0d171d;
+						border-color: #a1d737;
+					}
+				}
+			}
+		}
+
+		&-link {
+			border-radius: 1000px;
+			padding: 10px 20px;
+			font-size: 12px;
+			font-weight: 600;
+			transition-property: background-color, color, border-color;
+			transition-duration: 300ms;
+			transition-timing-function: linear;
+
+			@include media('md') {
+				font-size: 14px;
+				line-height: 18px;
+				padding: 12px 24px;
+			}
+
+			@include media('lg') {
+				font-size: 14px;
+				line-height: 18px;
+				padding: 12px 24px;
+			}
+		}
+
+		&.active {
+			display: flex;
+		}
+	}
+
+	&__search {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 103px;
+		position: relative;
+
+		> input {
+			border: #fafafa4d 1px solid;
+			border-radius: 1000px;
+			padding: 10px 18px 10px 42px;
+			background-color: transparent;
+			color: #fafafa;
+			font-size: 12px;
+			font-weight: 600;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			@include media('md') {
+				padding: 12px 24px 12px 48px;
+				font-size: 14px;
+				width: 124px;
+			}
+
+			&::placeholder {
+				color: #fafafa;
+				font-size: 12px;
+				font-weight: 600;
+			}
+		}
+
+		&-label {
+			position: absolute;
+			cursor: pointer;
+			left: 18px;
+
+			svg {
+				fill: #fafafa;
+			}
+		}
+	}
+}

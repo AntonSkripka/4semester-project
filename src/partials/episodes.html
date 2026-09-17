@@ -1,0 +1,34 @@
+<div class="episodes">
+  <div class="container--episodes">
+    <div class="episodes-styles">
+    <div class="episodes__search">
+      <label class="episodes__label">Name</label>
+      <input class="episodes__input" type="text" placeholder="Enter name" />
+      <button class="episodes__search-button">
+        <svg width="18" height="18" class="icon">
+          <use xlink:href="./images/sprite-episodes.svg#search"></use>
+        </svg>
+      </button>
+    </div>
+    <div class="episodes__filters">
+      <label class="episodes__label">Episode code</label>
+      <input class="episodes__filters-input" readonly value="All seasons" type="text">
+      <button class="episodes__filters-button ">
+        <svg width="18" height="18" class="icon">
+          <use xlink:href="./images/sprite-episodes.svg#chevron-down"></use>
+        </svg>
+      </button>
+    <ul class="episodes__dropdown is-hidden">
+      <li class="episodes__dropdown-item active" data-season="all">All seasons</li>
+      <li class="episodes__dropdown-item" data-season="1">1 season</li>
+      <li class="episodes__dropdown-item" data-season="2">2 season</li>
+      <li class="episodes__dropdown-item" data-season="3">3 season</li>
+      <li class="episodes__dropdown-item" data-season="4">4 season</li>
+      <li class="episodes__dropdown-item" data-season="5">5 season</li>
+    </ul>
+  </div>
+ </div>
+    <ul class="episodes__list"></ul>
+    <button class="episodes__load-button">Load more</button>
+</div>
+</div>

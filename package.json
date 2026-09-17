@@ -1,0 +1,30 @@
+{
+  "name": "rick-and-morty-team-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build --base=/rick-and-morty-team-project/",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "glob": "^8.1.0",
+    "prettier": "^3.6.2",
+    "sass": "^1.93.3",
+    "vite": "^4.0.5"
+  },
+  "author": " ",
+  "license": "ISC",
+  "dependencies": {
+    "body": "^5.1.0",
+    "body-scroll-lock": "^4.0.0-beta.0",
+    "handlebars": "^4.7.8",
+    "rickmortyapi": "^2.3.0",
+    "skroll": "^1.4.3",
+    "swiper": "^10.0.4",
+    "vite-plugin-full-reload": "^1.0.5",
+    "vite-plugin-html-inject": "^1.0.1"
+  }
+}

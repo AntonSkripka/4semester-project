@@ -1,0 +1,449 @@
+.episodes-hero {
+    background-color: #0D171D;
+    position: relative;
+    padding-top: 41px;
+    padding-bottom: 81px;
+    margin-bottom: 105px;
+    border-radius: 0 0 60px 60px;
+}
+
+.episodes-div {
+    position: relative;
+    z-index: 1;
+}
+
+.episodes-gradient {
+    position: absolute;
+    top: 320px;
+    right: 50%;
+    left: 50%;
+    z-index: 0;
+    border-radius: 60px;
+}
+
+.episodes-title {
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 110%;
+    color: #fafafa;
+    margin-bottom: 14px;
+}
+
+.episodes-text {
+    width: 335px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 129%;
+    text-align: left;
+    color: #fafafa;
+    margin-bottom: 24px;
+}
+
+.episodes-img {
+    background-color: #A1D737;
+    padding: 32px 39px 0 0;
+    border-radius: 25px;
+    display: block;
+
+    img {
+        border-radius: 25px;
+    }
+}
+
+.buttons-hero-div {
+    position: absolute;
+    height: 167px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.buttons-hero-list{
+    height: 163px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    will-change: transform;
+}
+
+.buttons-hero-list.clone{
+    position: absolute;
+    top: 0;
+    left: 0;
+    will-change: transform;
+}
+
+.btn {
+    position: absolute;
+    height: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 112%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+}
+
+#btn1 {
+    width: 218px;
+}
+
+#btn2 {
+    width: 154px;
+}
+
+#btn3 {
+    width: 98px;
+}
+
+#btn4 {
+    width: 158px;
+}
+
+#btn5 {
+    width: 151px;
+}
+
+#btn6 {
+    width: 113px;
+}
+
+#btn7 {
+    width: 124px;
+}
+
+#btn8 {
+    width: 168px;
+}
+
+#btn9 {
+    width: 102px;
+}
+
+#btn10 {
+    width: 124px;
+}
+
+#btn11 {
+    width: 162px;
+}
+
+#btn12 {
+    width: 112px;
+}
+
+#btn1 {
+    left: 0;
+    bottom: 0;
+    background-color: #0D171D;
+    color: #fafafa;
+    transform: rotate(0deg);
+}
+
+#btn2 {
+    left: 65px;
+    bottom: 52px;
+    background-color: #A1D737;
+    transform: rotate(0deg);
+}
+
+#btn3 {
+    left: 163px;
+    bottom: 80px;
+    background-color: #DAF836;
+    transform: rotate(31.18deg);
+}
+
+#btn4 {
+    left: 265px;
+    bottom: 0;
+    background-color: #A1D737;
+    transform: rotate(0deg);
+}
+
+#btn5 {
+    left: 364px;
+    bottom: 24px;
+    transform: rotate(17deg);
+    background-color: #0D171D;
+    color: #A1D737;
+}
+
+#btn6 {
+    left: 530px;
+    bottom: 35px;
+    transform: rotate(132deg);
+    background-color: #DAF836;
+    color: #111111;
+}
+
+#btn7 {
+    left: 580px;
+    bottom: 0;
+    transform: rotate(180deg);
+    background-color: #A1D737;
+    color: #111111;
+}
+
+#btn8 {
+    left: 710px;
+    bottom: 0;
+    transform: rotate(0deg);
+    background-color: #0D171D;
+    color: #FAFAFA;
+}
+
+#btn9 {
+    left: 786px;
+    bottom: 30px;
+    transform: rotate(34.53deg);
+    background-color: #DAF836;
+    color: #111111;
+}
+
+#btn10 {
+    left: 900px;
+    bottom: 0;
+    background-color: #0D171D;
+    color: #DAF836;
+    transform: rotate(180deg);
+}
+
+#btn11 {
+    left: 1028px;
+    bottom: 30px;
+    background-color: #DAF836;
+    color: #111111;
+    transform: rotate(148.92deg);
+}
+
+#btn12 {
+    left: 1126px;
+    bottom: 0;
+    background-color: #A1D737;
+    color: #111111;
+    transform: rotate(180deg);
+}
+
+@media screen and (min-width: 768px) {
+    .episodes-hero {
+        padding-top: 117px;
+        padding-bottom: 208px;
+    }
+
+    .episodes-div {
+        display: flex;
+        align-items: center;
+        gap: 53px;
+    }
+
+    .episodes-title {
+        font-weight: 600;
+        font-size: 60px;
+        line-height: 100%;
+        margin-bottom: 16px;
+    }
+
+    .episodes-text {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 112%;
+        margin-bottom: 32px;
+        width: 305px;
+    }
+
+    .characters-link {
+        border-radius: 1000px;
+        padding: 12px 24px;
+        width: 131px;
+        height: 42px;
+
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 129%;
+    }
+
+    .episodes-img {
+        background-color: #A1D737;
+        padding: 32px 50px 0 0;
+        border-radius: 25px;
+        display: block;
+    }
+
+    .episodes-gradient {
+        top: 50px;
+        right: 20px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .episodes-hero{
+        padding-top: 83px;
+        padding-bottom: 106px;
+
+        .episodes-div {
+            gap: 124px;
+    
+            .episodes-title {
+                font-weight: 600;
+                font-size: 100px;
+                line-height: 100%;
+            }
+    
+            .episodes-text {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 125%;
+                width: 482px;
+            }
+    
+            .episodes-img {
+                border-radius: 100px;
+                max-width: 504px;
+                max-height: 504px;
+    
+                img {
+                    border-radius: 100px;
+                }
+    
+            }
+        }
+    }
+
+    .episodes-gradient {
+
+        img {
+            width: 550px;
+            height: 500px;
+        }
+    }
+
+
+    .buttons-hero-div {
+        top: 632px;
+        height: 173px;
+    }
+
+    .btn {
+        position: absolute;
+        height: 50px;
+        font-weight: 600;
+        font-size: 21px;
+        line-height: 105%;
+        letter-spacing: 0.02em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100px;
+    }
+
+    #btn1 {
+        width: 218px;
+    }
+
+    #btn2 {
+        width: 154px;
+    }
+
+    #btn3 {
+        width: 125px;
+    }
+
+    #btn4 {
+        width: 207px;
+    }
+
+    #btn5 {
+        width: 187px;
+    }
+
+    #btn6 {
+        width: 134px;
+    }
+
+    #btn7 {
+        width: 152px;
+    }
+
+    #btn8 {
+        width: 214px;
+    }
+
+    #btn9 {
+        width: 119px;
+    }
+
+    #btn10 {
+        width: 124px;
+    }
+
+    #btn11 {
+        width: 162px;
+    }
+
+    #btn12 {
+        width: 112px;
+    }
+
+
+    #btn1 {
+        left: 0;
+        bottom: 17px;
+    }
+
+    #btn2 {
+        left: 56px;
+        bottom: 68px;
+    }
+
+    #btn3 {
+        left: 150px;
+        bottom: 89px;
+    }
+
+    #btn4 {
+        left: 278px;
+        bottom: 17px;
+    }
+
+    #btn5 {
+        left: 385px;
+        bottom: 42px;
+    }
+
+    #btn6 {
+        left: 590px;
+        bottom: 32px;
+    }
+
+    #btn7 {
+        left: 663px;
+        bottom: 17px;
+        z-index: -1;
+    }
+
+    #btn8 {
+        left: 818px;
+        bottom: 17px;
+    }
+
+    #btn9 {
+        left: 925px;
+        bottom: 44px;
+    }
+
+    #btn10 {
+        left: 1073px;
+        bottom: 17px;
+    }
+
+    #btn11 {
+        left: 1215px;
+        bottom: 43px;
+    }
+
+    #btn12 {
+        left: 1319px;
+        bottom: 17px;
+    }
+}

@@ -1,0 +1,350 @@
+.episodes {
+	width: 375px;
+	margin-bottom: 80px;
+	margin: 0 auto;
+	margin-bottom: 80px;
+
+	@include media('md') {
+		width: 768px;
+		margin-bottom: 128px;
+	}
+
+	@include media('lg') {
+		width: 1440px;
+		margin-bottom: 126px;
+	}
+
+	.container--episodes {
+		display: flex;
+		flex-direction: column;
+		padding: 0px;
+
+		@include media('lg') {
+			width: 1184px;
+			margin: 0 auto;
+		}
+	}
+
+	&-styles {
+		margin: 0 auto;
+
+		@include media('md') {
+			width: 439px;
+			height: 76px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 64px;
+		}
+	}
+
+	&__search {
+		width: 335px;
+		height: 68px;
+		position: relative;
+		margin-bottom: 20px;
+
+		@include media('md') {
+			width: 233px;
+			height: 76px;
+			margin-bottom: 0px;
+		}
+	}
+
+	&__label {
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 117%;
+		color: #111;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+
+		@include media('md') {
+			font-size: 14px;
+			line-height: 129%;
+		}
+	}
+
+	&__input {
+		width: 335px;
+		height: 46px;
+		border: 1.5px solid #111;
+		border-radius: 100px;
+		padding: 14px 24px;
+		background: var(--light-green);
+		position: absolute;
+		top: 22px;
+		left: 0px;
+
+		@include media('md') {
+			width: 233px;
+			height: 50px;
+		}
+	}
+
+	&__input {
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 129%;
+		color: #111;
+		@include media('md') {
+			font-size: 16px;
+			line-height: 112%;
+		}
+	}
+
+	&__search-button {
+		position: absolute;
+		top: 36px;
+		left: 293px;
+		background: none;
+		background-color: transparent;
+
+		@include media('md') {
+			top: 38px;
+			left: 191px;
+		}
+	}
+
+	&__filters {
+		width: 335px;
+		height: 70px;
+		position: relative;
+		margin-bottom: 40px;
+
+		@include media('md') {
+			width: 190px;
+			height: 76px;
+			margin-bottom: 0px;
+		}
+	}
+
+	&__filters-input {
+		border: 1.5px solid #111;
+		border-radius: 100px;
+		padding: 15px 24px;
+		width: 335px;
+		height: 48px;
+		position: absolute;
+		top: 22px;
+		left: 0px;
+
+		@include media('md') {
+			padding: 16px 24px;
+			width: 190px;
+			height: 50px;
+		}
+	}
+
+	&__filters-input::placeholder {
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 112%;
+		color: #111;
+	}
+
+	&__filters-button {
+		position: absolute;
+		top: 37px;
+		left: 293px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: none;
+
+		@include media('md') {
+			top: 39px;
+			left: 148px;
+		}
+	}
+
+	.rotated {
+		transform: rotate(180deg);
+	}
+
+	&__dropdown {
+		width: 335px;
+		max-height: 215px;
+		position: absolute;
+		top: 71px;
+		z-index: 3;
+		border-radius: 0px 0px 16px 16px;
+		padding-top: 16px;
+		padding-left: 24px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		box-shadow: 0 6px 14px 0 rgba(0, 0, 0, 0.15);
+		background: #fafafa;
+		overflow-y: scroll;
+
+		@include media('md') {
+			width: 190px;
+			height: 215px;
+		}
+	}
+
+	.is-hidden {
+		display: none;
+	}
+
+	&__dropdown::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	&__dropdown::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	&__dropdown::-webkit-scrollbar-thumb {
+		background: #575757;
+		border-radius: 12px;
+	}
+
+	&__dropdown-item {
+		margin-bottom: 8px;
+	}
+
+	&__dropdown-item:hover {
+		cursor: pointer;
+	}
+
+	.active {
+		font-family: var(--font-family);
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 129%;
+		color: var(--green);
+	}
+
+	&__list {
+		width: 335px;
+		margin: 0 auto;
+		margin-bottom: 40px;
+
+		@include media('md') {
+			width: 704px;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 32px;
+			margin-bottom: 64px;
+		}
+
+		@include media('lg') {
+			width: 1184px;
+			margin: 0px;
+			margin-bottom: 64px;
+			gap: 32px 16px;
+		}
+	}
+
+	&__list-item {
+		width: 335px;
+		height: 250px;
+		position: relative;
+		border: 2px solid var(--green);
+		border-radius: 18px;
+		margin-bottom: 20px;
+		background: var(--black);
+		cursor: pointer;
+
+		@include media('md') {
+			width: 336px;
+			margin-bottom: 0px;
+		}
+
+		@include media('lg') {
+			width: 284px;
+			height: 200px;
+		}
+	}
+
+	&__load-button {
+		width: 107px;
+		height: 36px;
+		border-radius: 1000px;
+		padding: 10px 20px;
+		margin: 0 auto;
+		background: var(--green);
+
+		@include media('md') {
+			width: 126px;
+			height: 42px;
+			padding: 12px 24px;
+		}
+	}
+}
+
+.episodes__name {
+	font-family: var(--font-family);
+	font-weight: 600;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	font-size: 16px;
+	line-height: 112%;
+	color: var(--green);
+}
+
+.episodes__season-title {
+	position: absolute;
+	top: 194px;
+	left: 20px;
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 117%;
+	color: rgba(250, 250, 250, 0.5);
+
+	@include media('lg') {
+		top: 144px;
+	}
+}
+
+.episodes__airdate-title {
+	position: absolute;
+	top: 194px;
+	left: 81px;
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 117%;
+	color: rgba(250, 250, 250, 0.5);
+	@include media('lg') {
+		top: 144px;
+	}
+}
+
+.episodes__season {
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 129%;
+	color: #fafafa;
+	position: absolute;
+	top: 212px;
+	left: 20px;
+	@include media('lg') {
+		top: 162px;
+	}
+}
+
+.episodes__airdate {
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 129%;
+	color: #fafafa;
+	position: absolute;
+	top: 212px;
+	left: 81px;
+	@include media('lg') {
+		top: 162px;
+	}
+}

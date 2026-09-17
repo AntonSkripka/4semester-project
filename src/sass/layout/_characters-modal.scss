@@ -1,0 +1,191 @@
+.backdrop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+	overflow: hidden;
+
+	.characters__modal {
+		position: relative;
+		background-color: #0d171d;
+		color: #fafafa;
+		width: 100%;
+		height: 100%;
+		overflow-x: auto;
+		padding: 40px 20px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		@include media('md') {
+			width: 702px;
+			height: 510px;
+			padding: 32px;
+			border-radius: 18px;
+			flex-direction: row;
+			gap: 8px;
+		}
+
+		&--close {
+			position: absolute;
+			top: 14px;
+			right: 14px;
+			background-color: transparent;
+			> svg {
+				color: #a1d737;
+			}
+		}
+
+		&--image {
+			> img {
+				border: 2px solid #a1d737;
+				border-radius: 18px;
+				overflow: hidden;
+				width: 295px;
+				height: 295px;
+
+				@include media('md') {
+					width: 278px;
+					height: 278px;
+				}
+			}
+		}
+
+		&--about {
+			border: 2px solid #a1d737;
+			border-radius: 18px;
+			padding: 20px;
+			width: 295px;
+			margin-top: 14px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			@include media('md') {
+				margin-top: 8px;
+				width: 278px;
+			}
+
+			&-list {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				gap: 14px;
+
+				> li {
+					> h2 {
+						color: #fafafa80;
+						font-size: 12px;
+						font-weight: 400;
+						line-height: 14px;
+						margin-bottom: 8px;
+					}
+
+					> p {
+						font-size: 14px;
+						font-weight: 400;
+						line-height: 18px;
+
+						@include media('md') {
+							font-size: 16px;
+						}
+					}
+				}
+			}
+		}
+
+		&--episodes {
+			margin-top: 40px;
+			max-width: 295px;
+
+			@include media('md') {
+				max-width: 352px;
+				margin-top: 0;
+			}
+
+			> h2 {
+				margin-bottom: 20px;
+				font-size: 18px;
+				line-height: 24px;
+				font-weight: 600;
+
+				@include media('md') {
+					font-size: 24px;
+					line-height: 28px;
+				}
+			}
+
+			&-list {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+
+				> li {
+					width: 295px;
+					border: 2px solid #a1d737;
+					border-radius: 18px;
+					padding: 14px;
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+
+					@include media('md') {
+						width: 352px;
+					}
+
+					> h3 {
+						font-size: 16px;
+						line-height: 18px;
+						font-weight: 600;
+						color: #a1d737;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						max-width: 72px;
+						width: 100%;
+
+						@include media('md') {
+							max-width: 101px;
+							font-size: 14px;
+						}
+					}
+
+					&-season {
+						width: 44px;
+						display: block;
+					}
+
+					&-airdate {
+						width: 124px;
+					}
+
+					> div {
+						> h4 {
+							color: #fafafa80;
+							font-size: 12px;
+							line-height: 14px;
+							font-weight: 400;
+							margin-bottom: 4px;
+						}
+
+						> p {
+							font-size: 14px;
+							line-height: 18px;
+							font-weight: 400;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.no-scroll {
+	overflow: hidden;
+}
