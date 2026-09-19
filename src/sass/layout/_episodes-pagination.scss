@@ -103,6 +103,12 @@
 		left: 293px;
 		background: none;
 		background-color: transparent;
+		@include multi-transition((color, transform, opacity), 300ms, ease);
+
+		&:hover {
+			opacity: 0.7;
+			transform: scale(1.1);
+		}
 
 		@include media('md') {
 			top: 38px;
@@ -156,6 +162,16 @@
 		align-items: center;
 		justify-content: center;
 		background: none;
+		@include multi-transition((color, transform, opacity), 300ms, ease);
+
+		&:hover {
+			opacity: 0.7;
+			transform: scale(1.1);
+		}
+
+		&.rotated:hover {
+			transform: rotate(180deg) scale(1.1);
+		}
 
 		@include media('md') {
 			top: 39px;
@@ -212,6 +228,9 @@
 
 	&__dropdown-item:hover {
 		cursor: pointer;
+		color: var(--green);
+		@include multi-transition((color, background-color, padding-left), 300ms, ease);
+		padding-left: 4px;
 	}
 
 	.active {
@@ -253,6 +272,14 @@
 		margin-bottom: 20px;
 		background: var(--black);
 		cursor: pointer;
+		@include multi-transition((border-color, background-color, transform, box-shadow), 300ms, ease);
+
+		&:hover {
+			border-color: var(--light-green);
+			background-color: #16242c;
+			transform: translateY(-4px);
+			box-shadow: 0 8px 18px rgba(13, 23, 29, 0.2);
+		}
 
 		@include media('md') {
 			width: 336px;
@@ -272,6 +299,13 @@
 		padding: 10px 20px;
 		margin: 0 auto;
 		background: var(--green);
+		@include multi-transition((background-color, color, transform, box-shadow), 300ms, ease);
+
+		&:hover {
+			background-color: var(--light-green);
+			transform: translateY(-3px);
+			box-shadow: 0 6px 14px rgba(13, 23, 29, 0.2);
+		}
 
 		@include media('md') {
 			width: 126px;

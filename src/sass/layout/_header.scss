@@ -20,14 +20,18 @@
 	&__logo {
 		display: none;
 
-		&.active {
+		@include media('lg') {
 			display: block;
 		}
 	}
 
 	&__list {
-		display: none;
+		display: flex;
 		gap: 1px;
+
+		@include media('lg') {
+			display: none;
+		}
 
 		&-item {
 			&:first-child {
@@ -64,9 +68,7 @@
 			padding: 10px 20px;
 			font-size: 12px;
 			font-weight: 600;
-			transition-property: background-color, color, border-color;
-			transition-duration: 300ms;
-			transition-timing-function: linear;
+			@include multi-transition((background-color, color, border-color), 300ms, linear);
 
 			@include media('md') {
 				font-size: 14px;
@@ -87,11 +89,15 @@
 	}
 
 	&__search {
-		display: flex;
+		display: none;
 		justify-content: center;
 		align-items: center;
 		width: 103px;
 		position: relative;
+
+		@include media('md') {
+			display: flex;
+		}
 
 		> input {
 			border: #fafafa4d 1px solid;

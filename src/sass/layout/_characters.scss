@@ -87,6 +87,13 @@
 		margin-bottom: 80px;
 		color: var(--black);
 		background: var(--green);
+		@include multi-transition((background-color, color, transform, box-shadow), 300ms, ease);
+
+		&:hover {
+			background-color: var(--light-green);
+			transform: translateY(-3px);
+			box-shadow: 0 6px 14px rgba(13, 23, 29, 0.2);
+		}
 
 		@include media('md') {
 			width: 126px;
@@ -253,6 +260,16 @@
 
 	&__button {
 		background-color: var(--light-green);
+		@include multi-transition((background-color, color, transform), 300ms, ease);
+
+		&:hover {
+			background-color: var(--green);
+			transform: scale(1.08);
+		}
+
+		&--search:hover {
+			transform: translateY(-106%) scale(1.08);
+		}
 
 		&--search {
 			position: absolute;
@@ -280,6 +297,13 @@
 		padding: 0 24px;
 		width: 162px;
 		height: 46px;
+		@include multi-transition((background-color, color, border-color, transform), 300ms, ease);
+
+		&:hover {
+			background-color: var(--green);
+			border-color: var(--green);
+			transform: translateY(-2px);
+		}
 
 		@include media('md') {
 			width: 100%;
@@ -369,6 +393,11 @@
 				opacity: 1;
 			}
 		}
+
+		&:hover {
+			color: #111;
+			background-color: var(--light-green);
+		}
 	}
 
 	&--open {
@@ -387,6 +416,12 @@
 	@include media('md') {
 		flex: 0 1 50%;
 		display: flex;
+		cursor: pointer;
+		@include multi-transition((transform, box-shadow, color), 300ms, ease);
+
+		&:hover {
+			transform: translateY(-6px);
+		}
 		flex-direction: column;
 		margin: 0;
 		max-width: 336px;
@@ -419,6 +454,12 @@
 		border-radius: 18px;
 		width: 335px;
 		height: 335px;
+			@include multi-transition((border-color, box-shadow, transform), 300ms, ease);
+
+			.character-card:hover & {
+				border-color: var(--light-green);
+				box-shadow: 0 8px 18px rgba(13, 23, 29, 0.18);
+			}
 
 		@include media('md') {
 			max-width: max-content;

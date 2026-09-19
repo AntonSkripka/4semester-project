@@ -40,6 +40,13 @@
 			> svg {
 				color: #a1d737;
 			}
+			@include multi-transition((color, transform, opacity), 300ms, ease);
+
+			&:hover {
+				color: #daf836;
+				opacity: 0.85;
+				transform: rotate(8deg) scale(1.08);
+			}
 		}
 
 		&--image {

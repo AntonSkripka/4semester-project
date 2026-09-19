@@ -47,6 +47,13 @@
     margin-top: 16px;
     margin-left: auto;
     display: block;
+  @include multi-transition((background-color, color, transform, box-shadow), 300ms, ease);
+
+  &:hover {
+    background-color: var(--light-green);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(13, 23, 29, 0.2);
+  }
   }
 }
 

@@ -1,46 +1,151 @@
-import '../sass/main.scss'
-import { dom } from './dom'
-import { renderCharacters, renderEpisodes } from './render'
+import '../sass/main.scss';
+import { dom } from './dom';
+import { PromoSlider } from './promoSlider';
+
+const getImageUrl = (path) => new URL(`../images/${path}`, import.meta.url).href;
+
+const CHARACTERS_CONFIG = {
+  rick: {
+    mobile: getImageUrl('rick-smart-1x.jpg'),
+    tablet: getImageUrl('rick-tablet-1x.jpg'),
+    bg: 'var(--green)',
+    width: { mobile: '205px', tablet: '395px' },
+    height: { mobile: '308px', tablet: '627px' },
+  },
+  morty: {
+    mobile: getImageUrl('morty-smart-1x.jpg'),
+    tablet: getImageUrl('morty-tablet-1x.jpg'),
+    bg: '#0d171d',
+    width: { mobile: '113px', tablet: '220px' },
+    height: { mobile: '279px', tablet: '565px' },
+  },
+  summer: {
+    mobile: getImageUrl('summer-smart-1x.jpg'),
+    tablet: getImageUrl('summer-tablet-1x.jpg'),
+    bg: '#daf836',
+    width: { mobile: '80px', tablet: '152px' },
+    height: { mobile: '295px', tablet: '560px' },
+  },
+  beth: {
+    mobile: getImageUrl('bet-smart-1x.jpg'),
+    tablet: getImageUrl('bet-tablet-1x.jpg'),
+    bg: '#a1d737',
+    width: { mobile: '81px', tablet: '150px' },
+    height: { mobile: '291px', tablet: '537px' },
+  },
+  jerry: {
+    mobile: getImageUrl('jerry-smart-1x.jpg'),
+    tablet: getImageUrl('jerry-tablet-1x.jpg'),
+    bg: '#0d171d',
+    width: { mobile: '78px', tablet: '148px' },
+    height: { mobile: '287px', tablet: '537px' },
+  },
+};
+
+const STATIC_IMAGES = [
+  { selector: '.RickAndMortyUsingAfuturisticDevice', filename: 'RickAndMortyUsingAfuturisticDevice-1x.png' },
+  { selector: '.ricAndMorty', filename: 'ricAndMorty-1x.png' },
+  { selector: '.ricAndMortyAndBabochka', filename: 'ricAndMortyAndBabochka-1x.png' },
+  { selector: '.RicAndBethAndJerry', filename: 'RicAndBethAndJerry-1x.png' },
+  { selector: '.MortyAndSummerInSpace', filename: 'MortyAndSummerInSpace-1x.png' },
+];
+
+const mediaQueryTablet = window.matchMedia('(min-width: 768px)');
+let activeCharacterElement = null;
+
+function updateCharacterDisplay(name) {
+  const cfg = CHARACTERS_CONFIG[name];
+  if (!cfg) return;
+
+  const isTablet = mediaQueryTablet.matches;
+  const deviceKey = isTablet ? 'tablet' : 'mobile';
+
+  const { mainCharacterImage, mainCharacterFigure } = dom;
+
+  if (mainCharacterImage) {
+    mainCharacterImage.src = cfg[deviceKey] || cfg.mobile;
+    mainCharacterImage.style.width = cfg.width[deviceKey];
+    mainCharacterImage.style.height = cfg.height[deviceKey];
+  }
+
+  if (mainCharacterFigure) {
+    mainCharacterFigure.style.backgroundColor = cfg.bg;
+  }
+}
+
+function handleCharacterSelect(element) {
+  if (!element) return;
+
+  if (activeCharacterElement && activeCharacterElement !== element) {
+    activeCharacterElement.classList.remove('main-characters__item--active');
+  }
+
+  activeCharacterElement = element;
+  activeCharacterElement.classList.add('main-characters__item--active');
+
+  const characterName = element.dataset.character;
+  updateCharacterDisplay(characterName);
+}
+
+function initStaticImages() {
+  STATIC_IMAGES.forEach(({ selector, filename }) => {
+    const img = document.querySelector(selector);
+    if (img) {
+      img.src = getImageUrl(filename);
+    }
+  });
+}
+
+function initHomePage() {
+  if (dom.mainCharacterItems && dom.mainCharacterItems.length > 0) {
+    dom.mainCharacterItems.forEach((element) => {
+      if (element.classList.contains('main-characters__item--active')) {
+        handleCharacterSelect(element);
+      }
+
+      element.addEventListener('click', (e) => handleCharacterSelect(e.currentTarget));
+    });
+
+    mediaQueryTablet.addEventListener('change', () => {
+      if (activeCharacterElement) {
+        updateCharacterDisplay(activeCharacterElement.dataset.character);
+      }
+    });
+  }
+
+  initStaticImages();
+  if (dom.promoSlider) {
+    new PromoSlider(dom.promoSlider, {
+      autoplayDelay: 3000,
+      dragThreshold: 50
+    });
+  }
+}
 
 function getPageType() {
-  const path = window.location.pathname;
+  const { pathname } = window.location;
 
-  if (path.includes('characters.html') || document.querySelector('#characters-list')) {
+  if (pathname.includes('characters.html') || document.querySelector('#characters-list')) {
     return 'characters';
   }
-  if (path.includes('episodes.html') || document.querySelector('.episodes__list')) {
+  if (pathname.includes('episodes.html') || document.querySelector('.episodes__list')) {
     return 'episodes';
   }
   return 'home';
 }
 
-// function init() {
-// 	// TODO: connect page-specific API requests, rendering and event listeners.
-// 	void renderCharacters
-// 	void renderEpisodes
-
-// 	console.log('Vite application started.', {
-// 		page: window.location.pathname,
-// 		availableDomNodes: Object.values(dom).filter(Boolean).length,
-// 	});
-// }
-
 document.addEventListener('DOMContentLoaded', () => {
   const page = getPageType();
-  console.log(`App initialized on page: ${page}`);
 
   switch (page) {
     case 'characters':
-      console.log('Сторінка персонажів');
       // initCharactersPage();
       break;
     case 'episodes':
-      console.log('Сторінка єпізодів');
       // initEpisodesPage();
       break;
     default:
-      console.log('Головна сторінка');
-      // initHomePage();
+      initHomePage();
       break;
   }
 });

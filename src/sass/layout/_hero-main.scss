@@ -12,6 +12,12 @@
         bottom: 40px;
         cursor: pointer;
         z-index: 10;
+        @include multi-transition((opacity, transform, color), 300ms, ease);
+
+        &:hover {
+            opacity: 1;
+            transform: translateY(4px);
+        }
     }
 
     &-div {
@@ -74,24 +80,57 @@
         height: 175px;
         overflow: hidden;
         width: 100%;
+
+        // &::before,
+        // &::after {
+        //     content: "";
+        //     position: absolute;
+        //     top: 0;
+        //     bottom: 0;
+        //     width: 90px;
+        //     z-index: 3;
+        //     pointer-events: none;
+        // }
+
+        // &::before {
+        //     left: 0;
+        //     background: linear-gradient(90deg, rgb(221, 225, 228) 0%, rgba(13, 23, 29, 0) 100%);
+        // }
+
+        // &::after {
+        //     right: 0;
+        //     background: linear-gradient(270deg, rgba(13, 23, 29, 1) 0%, rgba(13, 23, 29, 0) 100%);
+        // }
     }
 
-    .buttons-hero-list{
-    position: relative;
-    width: 1400px;
-    height: 173px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    will-change: transform;
-}
+    .buttons-hero-track {
+        position: relative;
+        width: 2800px;
+        height: 173px;
+        animation: hero-marquee 28s linear infinite;
+        will-change: transform;
+    }
 
-.buttons-hero-list.clone{
-    position: absolute;
-    top: 0;
-    left: 0;
-    will-change: transform;
-}
+    .buttons-hero-list {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1400px;
+        height: 173px;
+    }
+
+    .buttons-hero-list--duplicate {
+        left: 1400px;
+    }
+
+    @keyframes hero-marquee {
+        0% {
+            transform: translate3d(0, 0, 0);
+        }
+        100% {
+            transform: translate3d(-1400px, 0, 0);
+        }
+    }
 
     .btn {
         position: absolute;
@@ -231,7 +270,7 @@
     }
 
     #btn11 {
-        left: 1028px;
+        left: 1078px;
         bottom: 30px;
         background-color: #DAF836;
         color: #111111;
@@ -239,7 +278,7 @@
     }
 
     #btn12 {
-        left: 1126px;
+        left: 1226px;
         bottom: 0;
         background-color: #A1D737;
         color: #111111;

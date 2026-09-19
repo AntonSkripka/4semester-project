@@ -38,6 +38,13 @@
     font-size: 32px;
     color: var(--green);
     cursor: pointer;
+  @include multi-transition((color, transform, opacity), 300ms, ease);
+
+  &:hover {
+    color: var(--light-green);
+    opacity: 0.85;
+    transform: rotate(8deg) scale(1.08);
+  }
   }
 
   &__inner {
