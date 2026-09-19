@@ -1,6 +1,9 @@
 import '../sass/main.scss';
 import { dom } from './dom';
 import { PromoSlider } from './promoSlider';
+import { initEpisodesPage } from './episodes-page';
+import { initEpisodeModal } from './episode-modal';
+// import { initCharactersPage } from './characters-page';
 
 const getImageUrl = (path) => new URL(`../images/${path}`, import.meta.url).href;
 
@@ -117,7 +120,7 @@ function initHomePage() {
   if (dom.promoSlider) {
     new PromoSlider(dom.promoSlider, {
       autoplayDelay: 3000,
-      dragThreshold: 50
+      dragThreshold: 50,
     });
   }
 }
@@ -142,7 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // initCharactersPage();
       break;
     case 'episodes':
-      // initEpisodesPage();
+      initEpisodesPage();
+      initEpisodeModal();
       break;
     default:
       initHomePage();

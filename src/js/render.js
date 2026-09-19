@@ -3,6 +3,31 @@ import { dom } from './dom'
 
 Handlebars.registerHelper('fallback', (value, fallbackValue) => value || fallbackValue)
 
+function normalizeCharacter(character = {}) {
+	return {
+		id: character.id || 0,
+		name: character.name || 'Unknown character',
+		image: character.image || '',
+		status: character.status || 'unknown',
+		species: character.species || 'Unknown',
+		origin: {
+			name: character.origin?.name || 'Unknown origin',
+		},
+		location: {
+			name: character.location?.name || 'Unknown location',
+		},
+	};
+}
+
+function normalizeEpisode(episode = {}) {
+	return {
+		id: episode.id || 0,
+		name: episode.name || 'Unknown title',
+		episode: episode.episode || 'N/A',
+		air_date: episode.air_date || 'Unknown air date',
+	};
+}
+
 export const templates = {
 	characterCard: Handlebars.compile(dom.characterCardTemplate),
 	episode: Handlebars.compile(dom.episodesTemplate),
@@ -10,30 +35,84 @@ export const templates = {
 }
 
 export function renderCharacters(data = [], append = false) {
-	// TODO: pass id, name, image, origin.name and location.name to character-card.hbs.
-	if (!dom.charactersList) return
-	const markup = data.map(character => templates.characterCard(character)).join('')
-	if (append) dom.charactersList.insertAdjacentHTML('beforeend', markup)
-	else dom.charactersList.innerHTML = markup
+	if (!dom.charactersList) return;
+
+	const characters = Array.isArray(data) ? data : [];
+	const markup = characters
+		.map(character => templates.characterCard(normalizeCharacter(character)))
+		.join('');
+
+	if (append) {
+		dom.charactersList.insertAdjacentHTML('beforeend', markup);
+	} else {
+		dom.charactersList.innerHTML = markup;
+	}
 }
 
 export function renderEpisodes(data = [], append = false) {
-	// TODO: normalize name, episode season code and air_date for episodes.hbs.
-	if (!dom.episodesList) return
-	const markup = data.map(episode => templates.episode(episode)).join('')
-	if (append) dom.episodesList.insertAdjacentHTML('beforeend', markup)
-	else dom.episodesList.innerHTML = markup
+	if (!dom.episodesList) return;
+
+	const episodes = Array.isArray(data) ? data : [];
+	const markup = episodes
+		.map(episode => templates.episode(normalizeEpisode(episode)))
+		.join('');
+
+	if (append) {
+		dom.episodesList.insertAdjacentHTML('beforeend', markup);
+	} else {
+		dom.episodesList.innerHTML = markup;
+	}
 }
 
 export function renderCharacterModal(data) {
-	// TODO: render character details and the first five related episodes.
-	if (!data) return ''
-	return templates.characterCard(data)
+  if (!data) return '';
+
+  const normalizedCharacter = normalizeCharacter(data);
+
+  const episodeList = Array.isArray(data.episode) ? data.episode.slice(0, 5) : [];
+
+  const modalData = {
+    ...normalizedCharacter,
+    episodes: episodeList,
+  };
+
+  const markup = templates.characterModal
+    ? templates.characterModal(modalData)
+    : templates.characterCard(modalData);
+
+  if (dom.characterModalRoot) {
+    dom.characterModalRoot.innerHTML = markup;
+    return dom.characterModalRoot;
+  }
+
+  return markup;
 }
 
 export function renderEpisodeModal(data) {
-	// TODO: pass title, id, air_date and characters[{ name, image }] to episode-modal.hbs.
-	if (!dom.episodeModalRoot || !data) return ''
-	dom.episodeModalRoot.innerHTML = templates.episodeModal(data)
-	return dom.episodeModalRoot
+  if (!dom.episodeModalRoot || !data) return '';
+
+  const rawCharacters = Array.isArray(data.characters) ? data.characters : [];
+  const characters = rawCharacters.map((char) => {
+    if (typeof char === 'string') {
+      return { name: 'Character', image: '' };
+    }
+    return {
+      id: char.id || 0,
+      name: char.name || 'Unknown character',
+      image: char.image || '',
+    };
+  });
+
+  const modalContext = {
+    id: data.id || 0,
+    title: data.name || data.title || 'Unknown episode',
+    name: data.name || 'Unknown episode',
+    air_date: data.air_date || 'Unknown air date',
+    episode: data.episode || 'N/A',
+    characters,
+  };
+
+  dom.episodeModalRoot.innerHTML = templates.episodeModal(modalContext);
+
+  return dom.episodeModalRoot;
 }
