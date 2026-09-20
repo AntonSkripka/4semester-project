@@ -25,6 +25,13 @@
 		}
 	}
 
+	&__search-button,
+	&__filters-button {
+		svg {
+			pointer-events: none;
+		}
+	}
+
 	&-styles {
 		margin: 0 auto;
 
@@ -78,6 +85,13 @@
 		position: absolute;
 		top: 22px;
 		left: 0px;
+		@include multi-transition((background-color, border-color, color, box-shadow), 300ms, ease);
+
+		&:hover {
+			background-color: var(--green);
+			border-color: var(--green);
+			box-shadow: 0 4px 10px rgba(13, 23, 29, 0.12);
+		}
 
 		@include media('md') {
 			width: 233px;
@@ -91,6 +105,7 @@
 		font-size: 14px;
 		line-height: 129%;
 		color: #111;
+
 		@include media('md') {
 			font-size: 16px;
 			line-height: 112%;
@@ -138,6 +153,14 @@
 		position: absolute;
 		top: 22px;
 		left: 0px;
+		background-color: var(--light-green);
+		@include multi-transition((background-color, border-color, color, box-shadow), 300ms, ease);
+
+		&:hover {
+			background-color: var(--green);
+			border-color: var(--green);
+			box-shadow: 0 4px 10px rgba(13, 23, 29, 0.12);
+		}
 
 		@include media('md') {
 			padding: 16px 24px;
@@ -263,6 +286,44 @@
 		}
 	}
 
+	&__empty-state {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 24px;
+		width: 100%;
+		min-height: 360px;
+		padding: 24px 20px 64px;
+		text-align: center;
+
+		&[hidden] {
+			display: none;
+		}
+
+		img {
+			width: 280px;
+		}
+
+		p {
+			font-size: 20px;
+			line-height: 1.2;
+			color: var(--black);
+		}
+
+		@include media('md') {
+			min-height: 460px;
+
+			img {
+				width: 420px;
+			}
+
+			p {
+				font-size: 28px;
+			}
+		}
+	}
+
 	&__list-item {
 		width: 335px;
 		height: 250px;
@@ -270,7 +331,7 @@
 		border: 2px solid var(--green);
 		border-radius: 18px;
 		margin-bottom: 20px;
-		background: var(--black);
+		background: var(--black) url('../../images/background-1x.png') center / cover no-repeat;
 		cursor: pointer;
 		@include multi-transition((border-color, background-color, transform, box-shadow), 300ms, ease);
 
@@ -324,6 +385,13 @@
 	font-size: 16px;
 	line-height: 112%;
 	color: var(--green);
+
+	mark {
+		background-color: var(--light-green);
+		color: var(--black);
+		border-radius: 3px;
+		padding: 0 2px;
+	}
 }
 
 .episodes__season-title {
@@ -350,6 +418,7 @@
 	font-size: 12px;
 	line-height: 117%;
 	color: rgba(250, 250, 250, 0.5);
+
 	@include media('lg') {
 		top: 144px;
 	}
@@ -364,6 +433,7 @@
 	position: absolute;
 	top: 212px;
 	left: 20px;
+
 	@include media('lg') {
 		top: 162px;
 	}
@@ -378,6 +448,7 @@
 	position: absolute;
 	top: 212px;
 	left: 81px;
+
 	@include media('lg') {
 		top: 162px;
 	}

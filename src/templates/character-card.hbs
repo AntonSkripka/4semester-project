@@ -4,14 +4,14 @@
 	</div>
 
 	<div class='character-card__body'>
-		<h3 class='character-card__name'>{{name}}</h3>
+		<h3 class='character-card__name'>{{{highlightName name search}}}</h3>
 		<p class='character-card__origin'>
 			<strong class='character-card__origin--cl'>Origin:</strong>
-			{{origin}}
+			{{origin.name}}
 		</p>
 		<p class='character-card__location'>
 			<strong class='character-card__location--cl'>Location:</strong>
-			{{location}}
+			{{location.name}}
 		</p>
 	</div>
 </article>

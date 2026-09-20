@@ -1,0 +1,67 @@
+<div class="backdrop" data-character-modal>
+  <div class="characters__modal" role="dialog" aria-modal="true" aria-labelledby="character-modal-title">
+    <button class="characters__modal--close" type="button" data-close="true" aria-label="Close">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    </button>
+
+    <div class="characters__modal--profile">
+      <div class="characters__modal--image">
+        <img src="{{image}}" alt="{{name}}" />
+      </div>
+
+      <div class="characters__modal--about">
+        <ul class="characters__modal--about-list">
+          <li>
+            <h2>Status</h2>
+            <p>{{status}}</p>
+          </li>
+          <li>
+            <h2>Species</h2>
+            <p>{{species}}</p>
+          </li>
+          <li>
+            <h2>Gender</h2>
+            <p>{{gender}}</p>
+          </li>
+          <li>
+            <h2>Origin</h2>
+            <p>{{origin.name}}</p>
+          </li>
+          <li>
+            <h2>Location</h2>
+            <p>{{location.name}}</p>
+          </li>
+          <li>
+            <h2>Type</h2>
+            <p>{{type}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="characters__modal--episodes">
+      <h2 id="character-modal-title">{{name}}</h2>
+      <ul class="characters__modal--episodes-list">
+        {{#if episodes.length}}
+          {{#each episodes}}
+            <li>
+              <h3 title="{{name}}">{{name}}</h3>
+              <div class="characters__modal--episodes-list-season">
+                <h4>Season</h4>
+                <p>{{season}}</p>
+              </div>
+              <div class="characters__modal--episodes-list-airdate">
+                <h4>Air date</h4>
+                <p>{{air_date}}</p>
+              </div>
+            </li>
+          {{/each}}
+        {{else}}
+          <li class="characters__modal--episodes-empty">No episodes found</li>
+        {{/if}}
+      </ul>
+    </section>
+  </div>
+</div>

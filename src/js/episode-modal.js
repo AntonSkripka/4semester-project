@@ -18,7 +18,8 @@ export async function openEpisodeModal(episodeId) {
       characters = await fetchCharactersByUrls(episodeData.characters);
     }
 
-    renderEpisodeModal(episodeData, characters);
+    const modalRoot = renderEpisodeModal(episodeData, characters);
+    modalRoot?.querySelector('.episode-modal')?.classList.add('is-open');
     document.body.classList.add('is-modal-open');
 
     document.addEventListener('keydown', handleEscKey);
@@ -56,7 +57,7 @@ export function initEpisodeModal() {
 
   if (dom.episodeModalRoot) {
     dom.episodeModalRoot.addEventListener('click', (e) => {
-      const isOverlay = e.target === dom.episodeModalRoot;
+      const isOverlay = e.target.classList.contains('episode-modal__overlay');
       const isCloseBtn = e.target.closest('.modal__close-btn') || e.target.closest('[data-modal-close]');
 
       if (isOverlay || isCloseBtn) {

@@ -1,4 +1,5 @@
 import characterCardSource from '../templates/character-card.hbs?raw'
+import characterModalSource from '../templates/character-modal.hbs?raw'
 import episodesSource from '../templates/episodes.hbs?raw'
 import episodeModalSource from '../templates/episode-modal.hbs?raw'
 
@@ -8,6 +9,7 @@ export const dom = {
 	headerLogo: document.querySelector('.header__logo'),
 	headerList: document.querySelector('.header__list'),
 	headerSearchInput: document.getElementById('headerSearchInput'),
+	headerSearchDropdown: document.getElementById('headerSearchDropdown'),
 	main: document.querySelector('main'),
 	footer: document.querySelector('.footer'),
 	charactersRoot: document.getElementById('characters-root'),
@@ -16,9 +18,11 @@ export const dom = {
 	charactersSearchButton: document.querySelector('.filters__button--search'),
 	characterDropdowns: document.querySelectorAll('.dropdown'),
 	charactersList: document.getElementById('characters-list'),
+	charactersEmptyState: document.querySelector('.characters__empty-state'),
 	charactersLoadMore: document.getElementById('characters-load-more'),
 	characterModalRoot: document.getElementById('character-modal-root'),
 	episodesList: document.querySelector('.episodes__list'),
+	episodesEmptyState: document.querySelector('.episodes__empty-state'),
 	episodesSearchInput: document.querySelector('.episodes__input'),
 	episodesSearchButton: document.querySelector('.episodes__search-button'),
 	episodesSeasonInput: document.querySelector('.episodes__filters-input'),
@@ -36,6 +40,7 @@ export const dom = {
 	mainCharacterItems: document.querySelectorAll('.main-characters__item'),
 	heroButtonList: document.querySelector('.buttons-hero-list'),
 	characterCardTemplate: characterCardSource,
+	characterModalTemplate: characterModalSource,
 	episodesTemplate: episodesSource,
 	episodeModalTemplate: episodeModalSource,
 }

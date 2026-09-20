@@ -3,7 +3,8 @@ import { dom } from './dom';
 import { PromoSlider } from './promoSlider';
 import { initEpisodesPage } from './episodes-page';
 import { initEpisodeModal } from './episode-modal';
-// import { initCharactersPage } from './characters-page';
+import { initCharactersPage } from './characters-page';
+import { initCharacterModal } from "./character-modal.js";
 
 const getImageUrl = (path) => new URL(`../images/${path}`, import.meta.url).href;
 
@@ -99,6 +100,54 @@ function initStaticImages() {
   });
 }
 
+function initHeader() {
+  const currentPath = window.location.pathname;
+  const headerLinks = dom.headerList?.querySelectorAll('.header__list-link') || [];
+
+  headerLinks.forEach((link) => {
+    const isCharacters = currentPath.includes('characters.html') && link.href.includes('characters.html');
+    const isEpisodes = currentPath.includes('episodes.html') && link.href.includes('episodes.html');
+    link.classList.toggle('active', isCharacters || isEpisodes);
+    if (isCharacters || isEpisodes) {
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.removeAttribute('aria-current');
+    }
+  });
+
+  const input = dom.headerSearchInput;
+  const dropdown = dom.headerSearchDropdown;
+  if (!input || !dropdown) return;
+
+  const options = [...dropdown.querySelectorAll('li')];
+  const updateSearch = () => {
+    const query = input.value.trim().toLowerCase();
+    let visibleCount = 0;
+
+    options.forEach((option) => {
+      const link = option.querySelector('a');
+      const matches = query === '' || link.textContent.trim().toLowerCase().includes(query);
+      option.hidden = !matches;
+      if (matches) visibleCount += 1;
+    });
+
+    dropdown.hidden = query === '' || visibleCount === 0;
+  };
+
+  input.addEventListener('focus', updateSearch);
+  input.addEventListener('input', updateSearch);
+  document.addEventListener('click', (event) => {
+    if (!dropdown.contains(event.target) && event.target !== input) dropdown.hidden = true;
+  });
+  input.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      input.value = '';
+      dropdown.hidden = true;
+      input.blur();
+    }
+  });
+}
+
 function initHomePage() {
   if (dom.mainCharacterItems && dom.mainCharacterItems.length > 0) {
     dom.mainCharacterItems.forEach((element) => {
@@ -138,11 +187,13 @@ function getPageType() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  initHeader();
   const page = getPageType();
 
   switch (page) {
     case 'characters':
-      // initCharactersPage();
+      initCharactersPage();
+      initCharacterModal();
       break;
     case 'episodes':
       initEpisodesPage();

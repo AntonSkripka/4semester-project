@@ -2,7 +2,6 @@ import { fetchEpisodes } from './api.js';
 import { renderEpisodes } from './render.js';
 import { dom } from './dom.js';
 
-// --- Локальное состояние ---
 const state = {
   page: 1,
   totalPages: 1,
@@ -11,8 +10,7 @@ const state = {
   isLoading: false,
 };
 
-// --- Основная функция загрузки данных ---
-async function loadEpisodes(append = false) {
+async function loadEpisodes(append = false, loadAll = false) {
   if (state.isLoading) return;
   state.isLoading = true;
 
@@ -22,21 +20,39 @@ async function loadEpisodes(append = false) {
   };
 
   try {
-    const response = await fetchEpisodes(filters);
+    let response = await fetchEpisodes(filters);
+    let items = filterEpisodesBySeason(response.results);
 
     state.totalPages = response.info.pages;
 
-    // Фильтрация по сезону на клиенте (код эпизода из API имеет вид "S01E01")
-    let items = response.results;
-    if (state.season !== 'all') {
-      const seasonPrefix = `S${state.season.padStart(2, '0')}`;
-      items = items.filter((ep) => ep.episode && ep.episode.startsWith(seasonPrefix));
+    if (loadAll) {
+      const allItems = [...items];
+
+      while (response.info.next && state.page < state.totalPages) {
+        state.page += 1;
+        response = await fetchEpisodes({ ...filters, page: state.page });
+        state.totalPages = response.info.pages;
+        allItems.push(...filterEpisodesBySeason(response.results));
+      }
+
+      items = allItems;
     }
 
-    renderEpisodes(items, append);
+    while (
+      !loadAll &&
+      items.length === 0 &&
+      response.info.next &&
+      state.page < state.totalPages
+    ) {
+      state.page += 1;
+      response = await fetchEpisodes({ ...filters, page: state.page });
+      state.totalPages = response.info.pages;
+      items = filterEpisodesBySeason(response.results);
+    }
 
-    // Скрываем/показываем кнопку Load More
-    updateLoadMoreButton(Boolean(response.info.next) && state.page < state.totalPages);
+    renderEpisodes(items, append, state.search);
+
+    updateLoadMoreButton(!loadAll && Boolean(response.info.next) && state.page < state.totalPages);
   } catch (error) {
     console.error('Failed to load episodes:', error);
     updateLoadMoreButton(false);
@@ -45,31 +61,51 @@ async function loadEpisodes(append = false) {
   }
 }
 
-// --- Управление кнопкой Load More ---
+function filterEpisodesBySeason(episodes = []) {
+  if (state.season === 'all') return Array.isArray(episodes) ? episodes : [];
+
+  const seasonPrefix = `S${state.season.padStart(2, '0')}`;
+  return (Array.isArray(episodes) ? episodes : []).filter(
+    (episode) => episode.episode && episode.episode.startsWith(seasonPrefix),
+  );
+}
+
 function updateLoadMoreButton(hasMore) {
   if (!dom.episodesLoadMore) return;
   dom.episodesLoadMore.style.display = hasMore ? 'block' : 'none';
 }
 
-// --- Сброс состояния при новом поиске/сезоне ---
-function resetAndLoad() {
+function resetAndLoad(loadAll = state.season !== 'all') {
   state.page = 1;
-  loadEpisodes(false);
+  loadEpisodes(false, loadAll);
 }
 
-// --- Инициализация страницы эпизодов ---
+function getValidatedSearchValue(input) {
+  if (!input) return '';
+
+  const value = input.value.trim();
+  input.setCustomValidity('');
+
+  if (value.length > 80 || /[\u0000-\u001F\u007F]/.test(value)) {
+    input.setCustomValidity('Enter a valid episode name.');
+    input.reportValidity();
+    return null;
+  }
+
+  return value;
+}
+
 export function initEpisodesPage() {
   if (!dom.episodesList) return;
 
-  // 1. Первая загрузка
   loadEpisodes(false);
 
-  // 2. Обработка поиска по кнопке или по нажатию Enter в инпуте
   if (dom.episodesSearchButton) {
     dom.episodesSearchButton.addEventListener('click', (e) => {
       e.preventDefault();
-      const rawValue = dom.episodesSearchInput?.value || '';
-      state.search = rawValue.trim();
+      const value = getValidatedSearchValue(dom.episodesSearchInput);
+      if (value === null) return;
+      state.search = value;
       resetAndLoad();
     });
   }
@@ -78,14 +114,18 @@ export function initEpisodesPage() {
     dom.episodesSearchInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
-        const rawValue = dom.episodesSearchInput.value || '';
-        state.search = rawValue.trim();
+          const value = getValidatedSearchValue(dom.episodesSearchInput);
+          if (value === null) return;
+          state.search = value;
         resetAndLoad();
       }
     });
+
+      dom.episodesSearchInput.addEventListener('input', () => {
+        dom.episodesSearchInput.setCustomValidity('');
+      });
   }
 
-  // 3. Обработка Load More
   if (dom.episodesLoadMore) {
     dom.episodesLoadMore.addEventListener('click', () => {
       if (state.page < state.totalPages) {
@@ -95,11 +135,9 @@ export function initEpisodesPage() {
     });
   }
 
-  // 4. Логика Выпадающего Списка Сезонов
   initSeasonDropdown();
 }
 
-// --- Логика Кастомного Дропдауна (с учетом класса .is-hidden) ---
 function initSeasonDropdown() {
   const btn = dom.episodesSeasonButton;
   const dropdown = dom.episodesDropdown;
@@ -122,7 +160,6 @@ function initSeasonDropdown() {
     toggleDropdown();
   });
 
-  // Клик по пункту из списка (делегирование через dropdown)
   dropdown.addEventListener('click', (e) => {
     const item = e.target.closest('.episodes__dropdown-item');
     if (!item) return;
@@ -130,12 +167,10 @@ function initSeasonDropdown() {
     const selectedSeason = item.dataset.season || 'all';
     state.season = selectedSeason;
 
-    // Обновляем текст в инпуте (.episodes__filters-input)
     if (inputLabel) {
       inputLabel.value = item.textContent.trim();
     }
 
-    // Переключаем активный класс .active
     dropdown.querySelectorAll('.episodes__dropdown-item').forEach((el) => {
       el.classList.toggle('active', el === item);
     });
@@ -144,7 +179,6 @@ function initSeasonDropdown() {
     resetAndLoad();
   });
 
-  // Закрытие по клику вне списка и по Escape
   document.addEventListener('click', () => toggleDropdown(false));
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') toggleDropdown(false);
