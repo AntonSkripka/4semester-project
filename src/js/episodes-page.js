@@ -54,7 +54,6 @@ async function loadEpisodes(append = false, loadAll = false) {
 
     updateLoadMoreButton(!loadAll && Boolean(response.info.next) && state.page < state.totalPages);
   } catch (error) {
-    console.error('Failed to load episodes:', error);
     updateLoadMoreButton(false);
   } finally {
     state.isLoading = false;

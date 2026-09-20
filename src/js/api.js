@@ -52,7 +52,6 @@ export async function fetchCharacters(filters = {}) {
       results: Array.isArray(data.results) ? data.results : [],
     };
   } catch (error) {
-    console.error('Characters request failed.', error);
     return DEFAULT_LIST_FALLBACK;
   }
 }
@@ -77,7 +76,6 @@ export async function fetchCharacter(id) {
       episode: Array.isArray(data.episode) ? data.episode : [],
     };
   } catch (error) {
-    console.error('Character request failed.', error);
     return null;
   }
 }
@@ -99,7 +97,6 @@ export async function fetchEpisodes(filters = {}) {
       results: Array.isArray(data.results) ? data.results : [],
     };
   } catch (error) {
-    console.error('Episodes request failed.', error);
     return DEFAULT_LIST_FALLBACK;
   }
 }
@@ -119,7 +116,6 @@ export async function fetchEpisode(id) {
       characters: Array.isArray(data.characters) ? data.characters : [],
     };
   } catch (error) {
-    console.error('Episode request failed.', error);
     return null;
   }
 }
@@ -142,7 +138,6 @@ export async function fetchCharactersByUrls(urls = []) {
     const data = await response.json();
     return Array.isArray(data) ? data : [data];
   } catch (error) {
-    console.error('Failed to fetch characters by URLs', error);
     return [];
   }
 }

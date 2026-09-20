@@ -1,6 +1,8 @@
 import Handlebars from 'handlebars'
 import { dom } from './dom'
 
+const backgroundImageUrl = new URL('../images/background-1x.png', import.meta.url).href
+
 Handlebars.registerHelper('fallback', (value, fallbackValue) => value || fallbackValue)
 
 Handlebars.registerHelper('highlightName', (name, query) => {
@@ -29,7 +31,7 @@ function normalizeCharacter(character = {}) {
 	return {
 		id: character.id || 0,
 		name: character.name || 'Unknown character',
-		image: character.image || '',
+		image: character.image || backgroundImageUrl,
 		status: character.status || 'unknown',
 		species: character.species || 'Unknown',
 		type: character.type?.trim() || 'Not specified',

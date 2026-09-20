@@ -24,8 +24,6 @@ function closeAllDropdowns() {
 
 function prepareForm(e) {
     e.preventDefault();
-    console.log("Submit сработал!");
-
     const formData = new FormData(dom.charactersFilters);
     
     state.filters.name = formData.get("name")?.trim() || "";
@@ -36,8 +34,6 @@ function prepareForm(e) {
 
     state.page = 1;
 
-    console.log("Актуальные фильтры в state:", state.filters);
-    
     loadCharacters({ append: false });
 }
 
@@ -69,8 +65,6 @@ async function loadCharacters({ append = false } = {}) {
     } catch (error) {
         if (currentRequestId !== state.requestId) return;
 
-        console.error("Error:", error);
-        
         state.totalPages = 1;
         renderCharacters([], false, state.filters.name);
         

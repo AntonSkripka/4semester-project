@@ -9,7 +9,6 @@ export async function openEpisodeModal(episodeId) {
     const episodeData = await fetchEpisode(episodeId);
 
     if (!episodeData) {
-      console.warn(`Episode with ID ${episodeId} not found.`);
       return;
     }
 
@@ -24,7 +23,6 @@ export async function openEpisodeModal(episodeId) {
 
     document.addEventListener('keydown', handleEscKey);
   } catch (error) {
-    console.error(`Error loading episode modal (ID: ${episodeId}):`, error);
   }
 }
 

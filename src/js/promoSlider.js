@@ -7,7 +7,6 @@ export class PromoSlider {
     this.slides = this.track ? Array.from(this.track.querySelectorAll('.rnm-slider__slide')) : [];
 
     if (!this.track || this.slides.length === 0) {
-      console.warn('Slider track or slides not found');
       return;
     }
 
