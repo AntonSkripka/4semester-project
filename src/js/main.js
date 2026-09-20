@@ -7,6 +7,9 @@ import { initCharactersPage } from './characters-page';
 import { initCharacterModal } from "./character-modal.js";
 
 const getImageUrl = (path) => new URL(`../images/${path}`, import.meta.url).href;
+const backgroundImageUrl = getImageUrl('background-1x.png');
+
+document.documentElement.style.setProperty('--background-image', `url("${backgroundImageUrl}")`);
 
 const CHARACTERS_CONFIG = {
   rick: {

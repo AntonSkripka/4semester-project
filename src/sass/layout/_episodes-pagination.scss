@@ -331,7 +331,7 @@
 		border: 2px solid var(--green);
 		border-radius: 18px;
 		margin-bottom: 20px;
-		background: var(--black) url('../../images/background-1x.png') center / cover no-repeat;
+		background: var(--black) var(--background-image) center / cover no-repeat;
 		cursor: pointer;
 		@include multi-transition((border-color, background-color, transform, box-shadow), 300ms, ease);
 

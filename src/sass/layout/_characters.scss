@@ -490,7 +490,7 @@
 		border-radius: 18px;
 		width: 335px;
 		height: 335px;
-		background: var(--black) url('../../images/background-1x.png') center / cover no-repeat;
+		background: var(--black) var(--background-image) center / cover no-repeat;
 			@include multi-transition((border-color, box-shadow, transform), 300ms, ease);
 
 			.character-card:hover & {
