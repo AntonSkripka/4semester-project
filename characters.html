@@ -21,7 +21,7 @@
 			rel="stylesheet"
 		/>
 		
-		<script type="module" crossorigin src="/4semester-project/assets/main-ebad891c.js"></script>
+		<script type="module" crossorigin src="/4semester-project/assets/main-67b82ff3.js"></script>
 		<link rel="stylesheet" href="/4semester-project/assets/main-984c97b5.css">
 	</head>
 
@@ -98,7 +98,6 @@
 
 		</header>
 
-		<!-- Сюди JS вставить секцію characters з partial -->
 		<main id="characters-root">
 			<section class="characters-hero">
     <div class="container characters-div">
@@ -203,9 +202,7 @@
 			<section id="characters" class="characters">
     <div class="container">
 
-        <!-- Фільтри -->
         <form id="characters-filters" class="characters__filters filters">
-            <!-- Name -->
             <div class="filters__group filters__group--name">
                 <label for="filter-name" class="filters__label">Name</label>
                 <div class="filters__control-wrapper">
@@ -223,11 +220,9 @@
                 </div>
             </div>
 
-            <!-- Status -->
             <div class="filters__group filters__group--status">
                 <label for="filter-status" class="filters__label">Status</label>
 
-                <!-- Нативний select (прихований, для форми/API) -->
                 <select id="filter-status" name="status" class="filters__select filters__select--status" hidden>
                     <option value="all" selected>All</option>
                     <option value="alive">Alive</option>
@@ -235,7 +230,6 @@
                     <option value="unknown">Unknown</option>
                 </select>
 
-                <!-- Кастомний дропдаун -->
                 <div class="dropdown" data-select="status">
                     <button type="button" class="dropdown__trigger">
                         <span class="dropdown__value">All</span>
@@ -254,7 +248,6 @@
                 </div>
             </div>
 
-            <!-- Species -->
             <div class="filters__group filters__group--species">
                 <label for="filter-species" class="filters__label">Species</label>
 
@@ -299,7 +292,6 @@
                 </div>
             </div>
 
-            <!-- Type -->
             <div class="filters__group filters__group--type">
                 <label for="filter-type" class="filters__label">Type</label>
 
@@ -344,7 +336,6 @@
                 </div>
             </div>
 
-            <!-- Gender -->
             <div class="filters__group filters__group--gender">
                 <label for="filter-gender" class="filters__label">Gender</label>
 
@@ -380,7 +371,6 @@
             </div>
         </form>
 
-        <!-- Картки персонажів -->
         <div id="characters-list" class="characters__list"></div>
         <div class="characters__empty-state" hidden>
             <picture>
@@ -390,7 +380,6 @@
             <p>Oops! Try looking for something else...</p>
         </div>
 
-        <!-- Кнопка "Load more" -->
         <div class="characters__load-more-wrapper">
             <button id="characters-load-more" type="button" class="characters__load-more-button" hidden>
                 Load more
