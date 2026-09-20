@@ -21,8 +21,8 @@
 			rel="stylesheet"
 		/>
 		
-		<script type="module" crossorigin src="/4semester-project/assets/main-78791c9c.js"></script>
-		<link rel="stylesheet" href="/4semester-project/assets/main-9b30738c.css">
+		<script type="module" crossorigin src="/4semester-project/assets/main-ebad891c.js"></script>
+		<link rel="stylesheet" href="/4semester-project/assets/main-984c97b5.css">
 	</head>
 
 	<body>
@@ -86,7 +86,13 @@
 			id="headerSearchInput"
 			name="headerSearchInput"
 			placeholder="Search"
+			autocomplete="off"
 		/>
+		<ul class="header__search-dropdown" id="headerSearchDropdown" hidden>
+			<li><a href="./index.html" data-page-name="home">Home</a></li>
+			<li><a href="./characters.html" data-page-name="characters">Characters</a></li>
+			<li><a href="./episodes.html" data-page-name="episodes">Episodes</a></li>
+		</ul>
 	</div>
 </div>
 
@@ -194,6 +200,204 @@
       </div>
     </div>
 </section>
+			<section id="characters" class="characters">
+    <div class="container">
+
+        <!-- Фільтри -->
+        <form id="characters-filters" class="characters__filters filters">
+            <!-- Name -->
+            <div class="filters__group filters__group--name">
+                <label for="filter-name" class="filters__label">Name</label>
+                <div class="filters__control-wrapper">
+                    <input type="search" id="filter-name" name="name" class="filters__input filters__input--search"
+                        placeholder="Enter name" />
+                    <button type="submit" class="filters__button filters__button--search">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M8.25 14.25C11.5637 14.25 14.25 11.5637 14.25 8.25C14.25 4.93629 11.5637 2.25 8.25 2.25C4.93629 2.25 2.25 4.93629 2.25 8.25C2.25 11.5637 4.93629 14.25 8.25 14.25Z"
+                                stroke="#111111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M15.7508 15.75L12.4883 12.4875" stroke="#111111" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Status -->
+            <div class="filters__group filters__group--status">
+                <label for="filter-status" class="filters__label">Status</label>
+
+                <!-- Нативний select (прихований, для форми/API) -->
+                <select id="filter-status" name="status" class="filters__select filters__select--status" hidden>
+                    <option value="all" selected>All</option>
+                    <option value="alive">Alive</option>
+                    <option value="dead">Dead</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+
+                <!-- Кастомний дропдаун -->
+                <div class="dropdown" data-select="status">
+                    <button type="button" class="dropdown__trigger">
+                        <span class="dropdown__value">All</span>
+                        <span class="dropdown__arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#111111" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </button>
+                    <ul class="dropdown__menu">
+                        <li class="dropdown__item dropdown__item--selected" data-value="all">All</li>
+                        <li class="dropdown__item" data-value="alive">Alive</li>
+                        <li class="dropdown__item" data-value="dead">Dead</li>
+                        <li class="dropdown__item" data-value="unknown">Unknown</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Species -->
+            <div class="filters__group filters__group--species">
+                <label for="filter-species" class="filters__label">Species</label>
+
+                <select id="filter-species" name="species" class="filters__select filters__select--species" hidden>
+                    <option value="all" selected>All</option>
+                    <option value="human">Human</option>
+                    <option value="alien">Alien</option>
+                    <option value="mythological_creature">Mythological Creature</option>
+                    <option value="humanoid">Humanoid</option>
+                    <option value="animal">Animal</option>
+                    <option value="cronenberg">Cronenberg</option>
+                    <option value="poopybutthole">Poopybutthole</option>
+                    <option value="robot">Robot</option>
+                    <option value="disease">Disease</option>
+                </select>
+
+                <div class="dropdown" data-select="species">
+                    <button type="button" class="dropdown__trigger">
+                        <span class="dropdown__value">All</span>
+                        <span class="dropdown__arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#111111" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </button>
+                    <ul class="dropdown__menu">
+                        <li class="dropdown__item dropdown__item--selected" data-value="all">All</li>
+                        <li class="dropdown__item" data-value="human">Human</li>
+                        <li class="dropdown__item" data-value="alien">Alien</li>
+                        <li class="dropdown__item" data-value="mythological_creature">
+                            Mythological Creature
+                        </li>
+                        <li class="dropdown__item" data-value="humanoid">Humanoid</li>
+                        <li class="dropdown__item" data-value="animal">Animal</li>
+                        <li class="dropdown__item" data-value="cronenberg">Cronenberg</li>
+                        <li class="dropdown__item" data-value="poopybutthole">
+                            Poopybutthole
+                        </li>
+                        <li class="dropdown__item" data-value="robot">Robot</li>
+                        <li class="dropdown__item" data-value="disease">Disease</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Type -->
+            <div class="filters__group filters__group--type">
+                <label for="filter-type" class="filters__label">Type</label>
+
+                <select id="filter-type" name="type" class="filters__select filters__select--type" hidden>
+                    <option value="all" selected>All</option>
+                    <option value="parasite">Parasite</option>
+                    <option value="human with antennae">Human with antennae</option>
+                    <option value="superhuman">Superhuman</option>
+                    <option value="genetic experiment">Genetic experiment</option>
+                    <option value="fish-person">Fish-Person</option>
+                    <option value="cromulon">Cromulon</option>
+                </select>
+
+                <div class="dropdown" data-select="type">
+                    <button type="button" class="dropdown__trigger">
+                        <span class="dropdown__value">All</span>
+                        <span class="dropdown__arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#111111" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </button>
+                    <ul class="dropdown__menu">
+                        <li class="dropdown__item dropdown__item--selected" data-value="all">All</li>
+                        <li class="dropdown__item" data-value="parasite">Parasite</li>
+                        <li class="dropdown__item" data-value="human with antennae">
+                            Human with antennae
+                        </li>
+                        <li class="dropdown__item" data-value="superhuman">
+                            Superhuman
+                        </li>
+                        <li class="dropdown__item" data-value="genetic experiment">
+                            Genetic experiment
+                        </li>
+                        <li class="dropdown__item" data-value="fish-person">
+                            Fish-Person
+                        </li>
+                        <li class="dropdown__item" data-value="cromulon">
+                            Cromulon
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Gender -->
+            <div class="filters__group filters__group--gender">
+                <label for="filter-gender" class="filters__label">Gender</label>
+
+                <select id="filter-gender" name="gender" class="filters__select filters__select--gender" hidden>
+                    <option value="all" selected>All</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="genderless">Genderless</option>
+                    <option value="unknown">Unknown</option>
+                </select>
+
+                <div class="dropdown" data-select="gender">
+                    <button type="button" class="dropdown__trigger">
+                        <span class="dropdown__value">All</span>
+                        <span class="dropdown__arrow"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="#111111" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg></span>
+                    </button>
+                    <ul class="dropdown__menu">
+                        <li class="dropdown__item dropdown__item--selected" data-value="all">
+                            All
+                        </li>
+                        <li class="dropdown__item" data-value="female">Female</li>
+                        <li class="dropdown__item" data-value="male">Male</li>
+                        <li class="dropdown__item" data-value="genderless">
+                            Genderless
+                        </li>
+                        <li class="dropdown__item" data-value="unknown">Unknown</li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+
+        <!-- Картки персонажів -->
+        <div id="characters-list" class="characters__list"></div>
+        <div class="characters__empty-state" hidden>
+            <picture>
+                <source media="(min-width: 768px)" srcset="/4semester-project/assets/not-found-t-1x-02f95960.png 1x, /4semester-project/assets/not-found-t-2x-8c7a874c.png 2x, /4semester-project/assets/not-found-t-3x-971a1f11.png 3x">
+                <img src="/4semester-project/assets/not-found-m-1x-dbd247d9.png" srcset="/4semester-project/assets/not-found-m-2x-ca2f9946.png 2x, /4semester-project/assets/not-found-m-3x-742ed5c5.png 3x" alt="Nothing found">
+            </picture>
+            <p>Oops! Try looking for something else...</p>
+        </div>
+
+        <!-- Кнопка "Load more" -->
+        <div class="characters__load-more-wrapper">
+            <button id="characters-load-more" type="button" class="characters__load-more-button" hidden>
+                Load more
+            </button>
+        </div>
+    </div>
+</section>
 		</main>
 
 		<footer class="footer">
@@ -262,6 +466,7 @@
 </div>
 
 		</footer>
+		<div id="character-modal-root"></div>
 
 		
 	</body>

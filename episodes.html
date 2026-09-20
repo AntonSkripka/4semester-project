@@ -21,8 +21,8 @@
 			rel="stylesheet"
 		/>
 		
-		<script type="module" crossorigin src="/4semester-project/assets/main-78791c9c.js"></script>
-		<link rel="stylesheet" href="/4semester-project/assets/main-9b30738c.css">
+		<script type="module" crossorigin src="/4semester-project/assets/main-ebad891c.js"></script>
+		<link rel="stylesheet" href="/4semester-project/assets/main-984c97b5.css">
 	</head>
 
 	<body>
@@ -86,7 +86,13 @@
 			id="headerSearchInput"
 			name="headerSearchInput"
 			placeholder="Search"
+			autocomplete="off"
 		/>
+		<ul class="header__search-dropdown" id="headerSearchDropdown" hidden>
+			<li><a href="./index.html" data-page-name="home">Home</a></li>
+			<li><a href="./characters.html" data-page-name="characters">Characters</a></li>
+			<li><a href="./episodes.html" data-page-name="episodes">Episodes</a></li>
+		</ul>
 	</div>
 </div>
 
@@ -224,6 +230,13 @@
   </div>
  </div>
     <ul class="episodes__list"></ul>
+    <div class="episodes__empty-state" hidden>
+      <picture>
+        <source media="(min-width: 768px)" srcset="/4semester-project/assets/not-found-t-1x-02f95960.png 1x, /4semester-project/assets/not-found-t-2x-8c7a874c.png 2x, /4semester-project/assets/not-found-t-3x-971a1f11.png 3x">
+        <img src="/4semester-project/assets/not-found-m-1x-dbd247d9.png" srcset="/4semester-project/assets/not-found-m-2x-ca2f9946.png 2x, /4semester-project/assets/not-found-m-3x-742ed5c5.png 3x" alt="Nothing found">
+      </picture>
+      <p>Oops! Try looking for something else...</p>
+    </div>
     <button class="episodes__load-button">Load more</button>
 </div>
 </div>
@@ -294,6 +307,7 @@
 </div>
 
 		</footer>
+		<div id="episode-modal-root"></div>
 		
 	</body>
 </html>
