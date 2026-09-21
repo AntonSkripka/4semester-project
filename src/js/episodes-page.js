@@ -2,13 +2,18 @@ import { fetchEpisodes } from './api.js';
 import { renderEpisodes } from './render.js';
 import { dom } from './dom.js';
 
+const ALL_SEASONS = 'all';
+const MAX_SEARCH_LENGTH = 80;
+
 const state = {
   page: 1,
   totalPages: 1,
   search: '',
-  season: 'all',
+  season: ALL_SEASONS,
   isLoading: false,
 };
+
+let isInitialized = false;
 
 async function loadEpisodes(append = false, loadAll = false) {
   if (state.isLoading) return;
@@ -28,7 +33,7 @@ async function loadEpisodes(append = false, loadAll = false) {
     if (loadAll) {
       const allItems = [...items];
 
-      while (response.info.next && state.page < state.totalPages) {
+      while (hasNextPage(response)) {
         state.page += 1;
         response = await fetchEpisodes({ ...filters, page: state.page });
         state.totalPages = response.info.pages;
@@ -39,10 +44,7 @@ async function loadEpisodes(append = false, loadAll = false) {
     }
 
     while (
-      !loadAll &&
-      items.length === 0 &&
-      response.info.next &&
-      state.page < state.totalPages
+      !loadAll && items.length === 0 && hasNextPage(response)
     ) {
       state.page += 1;
       response = await fetchEpisodes({ ...filters, page: state.page });
@@ -52,7 +54,7 @@ async function loadEpisodes(append = false, loadAll = false) {
 
     renderEpisodes(items, append, state.search);
 
-    updateLoadMoreButton(!loadAll && Boolean(response.info.next) && state.page < state.totalPages);
+    updateLoadMoreButton(!loadAll && hasNextPage(response));
   } catch (error) {
     updateLoadMoreButton(false);
   } finally {
@@ -60,8 +62,12 @@ async function loadEpisodes(append = false, loadAll = false) {
   }
 }
 
+function hasNextPage(response) {
+  return Boolean(response.info.next) && state.page < state.totalPages;
+}
+
 function filterEpisodesBySeason(episodes = []) {
-  if (state.season === 'all') return Array.isArray(episodes) ? episodes : [];
+  if (state.season === ALL_SEASONS) return Array.isArray(episodes) ? episodes : [];
 
   const seasonPrefix = `S${state.season.padStart(2, '0')}`;
   return (Array.isArray(episodes) ? episodes : []).filter(
@@ -74,7 +80,7 @@ function updateLoadMoreButton(hasMore) {
   dom.episodesLoadMore.style.display = hasMore ? 'block' : 'none';
 }
 
-function resetAndLoad(loadAll = state.season !== 'all') {
+function resetAndLoad(loadAll = state.season !== ALL_SEASONS) {
   state.page = 1;
   loadEpisodes(false, loadAll);
 }
@@ -85,7 +91,7 @@ function getValidatedSearchValue(input) {
   const value = input.value.trim();
   input.setCustomValidity('');
 
-  if (value.length > 80 || /[\u0000-\u001F\u007F]/.test(value)) {
+  if (value.length > MAX_SEARCH_LENGTH || /[\u0000-\u001F\u007F]/.test(value)) {
     input.setCustomValidity('Enter a valid episode name.');
     input.reportValidity();
     return null;
@@ -95,7 +101,8 @@ function getValidatedSearchValue(input) {
 }
 
 export function initEpisodesPage() {
-  if (!dom.episodesList) return;
+  if (!dom.episodesList || isInitialized) return;
+  isInitialized = true;
 
   loadEpisodes(false);
 
@@ -163,7 +170,7 @@ function initSeasonDropdown() {
     const item = e.target.closest('.episodes__dropdown-item');
     if (!item) return;
 
-    const selectedSeason = item.dataset.season || 'all';
+    const selectedSeason = item.dataset.season || ALL_SEASONS;
     state.season = selectedSeason;
 
     if (inputLabel) {

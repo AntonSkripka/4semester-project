@@ -3,6 +3,7 @@ import { fetchCharacter, fetchEpisode } from "./api.js";
 import { renderCharacterModal } from "./render.js";
 
 let modalEventsAttached = false;
+let characterListEventsAttached = false;
 
 export function closeModal() {
     if (dom.characterModalRoot) {
@@ -116,7 +117,8 @@ export async function openCharacterModal(id) {
 }
 
 export function initCharacterModal() {
-    if (!dom.charactersList) return;
+    if (!dom.charactersList || characterListEventsAttached) return;
+    characterListEventsAttached = true;
 
     attachModalEvents();
 

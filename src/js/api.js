@@ -1,9 +1,14 @@
 const BASE_URL = 'https://rickandmortyapi.com/api';
 
-const DEFAULT_LIST_FALLBACK = {
-  info: { pages: 0, next: null, prev: null, count: 0 },
-  results: [],
-};
+const DEFAULT_PAGE = 1;
+const EMPTY_LIST_INFO = { pages: 0, next: null, prev: null, count: 0 };
+
+function createEmptyListResponse() {
+  return {
+    info: { ...EMPTY_LIST_INFO },
+    results: [],
+  };
+}
 
 function buildQueryString(filters = {}) {
   if (!filters || typeof filters !== 'object') return '';
@@ -17,7 +22,7 @@ function buildQueryString(filters = {}) {
 
     if (key === 'page') {
       const pageNum = Number(value);
-      params.append('page', !pageNum || pageNum < 1 ? 1 : pageNum);
+      params.append('page', !pageNum || pageNum < 1 ? DEFAULT_PAGE : pageNum);
     } else {
       params.append(key, normalized);
     }
@@ -25,6 +30,24 @@ function buildQueryString(filters = {}) {
 
   const queryString = params.toString();
   return queryString ? `?${queryString}` : '';
+}
+
+function getListResponse(data) {
+  return {
+    info: {
+      pages: data.info?.pages || 0,
+      next: data.info?.next || null,
+      prev: data.info?.prev || null,
+      count: data.info?.count || 0,
+    },
+    results: Array.isArray(data.results) ? data.results : [],
+  };
+}
+
+async function requestJson(endpoint) {
+  const response = await fetch(`${BASE_URL}/${endpoint}`);
+  if (!response.ok) return null;
+  return response.json();
 }
 
 function validateId(id) {
@@ -38,31 +61,19 @@ function validateId(id) {
 export async function fetchCharacters(filters = {}) {
   try {
     const query = buildQueryString(filters);
-    const response = await fetch(`${BASE_URL}/character${query}`);
-    if (!response.ok) return DEFAULT_LIST_FALLBACK;
-
-    const data = await response.json();
-    return {
-      info: {
-        pages: data.info?.pages || 0,
-        next: data.info?.next || null,
-        prev: data.info?.prev || null,
-        count: data.info?.count || 0,
-      },
-      results: Array.isArray(data.results) ? data.results : [],
-    };
+    const data = await requestJson(`character${query}`);
+    return data ? getListResponse(data) : createEmptyListResponse();
   } catch (error) {
-    return DEFAULT_LIST_FALLBACK;
+    return createEmptyListResponse();
   }
 }
 
 export async function fetchCharacter(id) {
   try {
     const cleanId = validateId(id);
-    const response = await fetch(`${BASE_URL}/character/${cleanId}`);
-    if (!response.ok) return null;
+    const data = await requestJson(`character/${cleanId}`);
+    if (!data) return null;
 
-    const data = await response.json();
     return {
       id: data.id,
       name: data.name || '',
@@ -83,31 +94,19 @@ export async function fetchCharacter(id) {
 export async function fetchEpisodes(filters = {}) {
   try {
     const query = buildQueryString(filters);
-    const response = await fetch(`${BASE_URL}/episode${query}`);
-    if (!response.ok) return DEFAULT_LIST_FALLBACK;
-
-    const data = await response.json();
-    return {
-      info: {
-        pages: data.info?.pages || 0,
-        next: data.info?.next || null,
-        prev: data.info?.prev || null,
-        count: data.info?.count || 0,
-      },
-      results: Array.isArray(data.results) ? data.results : [],
-    };
+    const data = await requestJson(`episode${query}`);
+    return data ? getListResponse(data) : createEmptyListResponse();
   } catch (error) {
-    return DEFAULT_LIST_FALLBACK;
+    return createEmptyListResponse();
   }
 }
 
 export async function fetchEpisode(id) {
   try {
     const cleanId = validateId(id);
-    const response = await fetch(`${BASE_URL}/episode/${cleanId}`);
-    if (!response.ok) return null;
+    const data = await requestJson(`episode/${cleanId}`);
+    if (!data) return null;
 
-    const data = await response.json();
     return {
       id: data.id,
       name: data.name || '',
@@ -132,10 +131,9 @@ export async function fetchCharactersByUrls(urls = []) {
   if (ids.length === 0) return [];
 
   try {
-    const response = await fetch(`${BASE_URL}/character/${ids.join(',')}`);
-    if (!response.ok) return [];
+    const data = await requestJson(`character/${ids.join(',')}`);
+    if (!data) return [];
 
-    const data = await response.json();
     return Array.isArray(data) ? data : [data];
   } catch (error) {
     return [];

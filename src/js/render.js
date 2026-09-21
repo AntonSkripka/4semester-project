@@ -55,6 +55,27 @@ function normalizeEpisode(episode = {}) {
 	};
 }
 
+function renderCollection({ container, emptyState, data, append, renderItem }) {
+	if (!container) return;
+
+	const items = Array.isArray(data) ? data : [];
+	if (!append) {
+		container.innerHTML = '';
+	}
+	if (emptyState) {
+		emptyState.hidden = items.length > 0 || append;
+	}
+	if (items.length === 0) return;
+
+	const markup = items.map(renderItem).join('');
+	if (append) {
+		container.insertAdjacentHTML('beforeend', markup);
+		return;
+	}
+
+	container.innerHTML = markup;
+}
+
 export const templates = {
 	characterCard: Handlebars.compile(dom.characterCardTemplate),
 	characterModal: Handlebars.compile(dom.characterModalTemplate),
@@ -63,55 +84,29 @@ export const templates = {
 }
 
 export function renderCharacters(data = [], append = false, search = '') {
-	if (!dom.charactersList) return;
-
-	const characters = Array.isArray(data) ? data : [];
-	if (!append) {
-		dom.charactersList.innerHTML = '';
-	}
-	if (dom.charactersEmptyState) {
-		dom.charactersEmptyState.hidden = characters.length > 0 || append;
-	}
-	if (characters.length === 0) return;
-
-	const markup = characters
-		.map(character => templates.characterCard({
+	renderCollection({
+		container: dom.charactersList,
+		emptyState: dom.charactersEmptyState,
+		data,
+		append,
+		renderItem: character => templates.characterCard({
 			...normalizeCharacter(character),
 			search,
-		}))
-		.join('');
-
-	if (append) {
-		dom.charactersList.insertAdjacentHTML('beforeend', markup);
-	} else {
-		dom.charactersList.innerHTML = markup;
-	}
+		}),
+	});
 }
 
 export function renderEpisodes(data = [], append = false, search = '') {
-	if (!dom.episodesList) return;
-
-	const episodes = Array.isArray(data) ? data : [];
-	if (!append) {
-		dom.episodesList.innerHTML = '';
-	}
-	if (dom.episodesEmptyState) {
-		dom.episodesEmptyState.hidden = episodes.length > 0 || append;
-	}
-	if (episodes.length === 0) return;
-
-	const markup = episodes
-		.map(episode => templates.episode({
+	renderCollection({
+		container: dom.episodesList,
+		emptyState: dom.episodesEmptyState,
+		data,
+		append,
+		renderItem: episode => templates.episode({
 			...normalizeEpisode(episode),
 			search,
-		}))
-		.join('');
-
-	if (append) {
-		dom.episodesList.insertAdjacentHTML('beforeend', markup);
-	} else {
-		dom.episodesList.innerHTML = markup;
-	}
+		}),
+	});
 }
 
 export function renderCharacterModal(data) {

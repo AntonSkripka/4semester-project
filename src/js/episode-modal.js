@@ -2,6 +2,8 @@ import { fetchEpisode, fetchCharactersByUrls } from './api.js';
 import { renderEpisodeModal } from './render.js';
 import { dom } from './dom.js';
 
+let isInitialized = false;
+
 export async function openEpisodeModal(episodeId) {
   if (!dom.episodeModalRoot) return;
 
@@ -41,6 +43,9 @@ function handleEscKey(e) {
 }
 
 export function initEpisodeModal() {
+  if (isInitialized) return;
+  isInitialized = true;
+
   if (dom.episodesList) {
     dom.episodesList.addEventListener('click', (e) => {
       const card = e.target.closest('[data-episode-id]');

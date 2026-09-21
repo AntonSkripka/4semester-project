@@ -6,6 +6,10 @@ import { initEpisodeModal } from './episode-modal';
 import { initCharactersPage } from './characters-page';
 import { initCharacterModal } from "./character-modal.js";
 
+const TABLET_BREAKPOINT = 768;
+const AUTOPLAY_DELAY = 3000;
+const DRAG_THRESHOLD = 50;
+
 const getImageUrl = (path) => new URL(`../images/${path}`, import.meta.url).href;
 const backgroundImageUrl = getImageUrl('background-1x.png');
 
@@ -57,7 +61,7 @@ const STATIC_IMAGES = [
   { selector: '.MortyAndSummerInSpace', filename: 'MortyAndSummerInSpace-1x.png' },
 ];
 
-const mediaQueryTablet = window.matchMedia('(min-width: 768px)');
+const mediaQueryTablet = window.matchMedia(`(min-width: ${TABLET_BREAKPOINT}px)`);
 let activeCharacterElement = null;
 
 function updateCharacterDisplay(name) {
@@ -171,8 +175,8 @@ function initHomePage() {
   initStaticImages();
   if (dom.promoSlider) {
     new PromoSlider(dom.promoSlider, {
-      autoplayDelay: 3000,
-      dragThreshold: 50,
+      autoplayDelay: AUTOPLAY_DELAY,
+      dragThreshold: DRAG_THRESHOLD,
     });
   }
 }
